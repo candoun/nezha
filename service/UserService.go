@@ -61,6 +61,16 @@ func (a *UserService) GetUsers(page, pagesize int, maps interface{}) interface{}
 	return &res
 }
 
+//RegisterUser 新建用户，并不同时新建用户角色
+func (a *UserService) RegisterUser(user *models.User) bool {
+
+	isOK := a.Repository.AddUser(user)
+	if !isOK {
+		return false
+	}
+	return true
+}
+
 //AddUser 新建用户，同时新建用户角色
 func (a *UserService) AddUser(user *models.User) bool {
 	//此处不能使用事务同时创建用户和角色，因为Role表中需要UserID，而UserID需要插入用户数据后才生成，所以不能用事务，否则会报错
@@ -73,7 +83,7 @@ func (a *UserService) AddUser(user *models.User) bool {
 	var role models.Role
 	role.UserID = user.ID
 	role.UserName = user.Username
-	role.Value = "test"
+	role.Value = "dev"
 	if user.UserType == 1 {
 		role.Value = "admin"
 	}
@@ -88,7 +98,7 @@ func (a *UserService) AddUser(user *models.User) bool {
 //ExistUserByName 判断用户名是否已存在
 func (a *UserService) ExistUserByName(username string) bool {
 	where := models.User{Username: username}
-	return a.Repository.ExistUserByName(&where)
+	return a.Repository.ExistUserByName(where)
 }
 
 //UpdateUser 更新用户

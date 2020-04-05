@@ -7,3 +7,63 @@
 {"level":"error","ts":"2020-04-04T20:46:19.477+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00003b2a0"}
 {"level":"error","ts":"2020-04-04T22:00:40.177+0800","caller":"repository/UserRepository.go:19","msg":"用户名或密码错误%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-04T22:00:51.295+0800","caller":"repository/UserRepository.go:19","msg":"用户名或密码错误%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-05T11:10:39.397+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc000285310"}
+{"level":"error","ts":"2020-04-05T11:10:48.685+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0003908b0"}
+{"level":"error","ts":"2020-04-05T11:10:51.283+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0003913b0"}
+{"level":"error","ts":"2020-04-05T11:10:52.121+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00041e790"}
+{"level":"error","ts":"2020-04-05T11:19:34.626+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc000304cd0"}
+{"level":"error","ts":"2020-04-05T11:19:37.553+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc00028dc20"}
+{"level":"error","ts":"2020-04-05T11:19:38.352+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002da7c0"}
+{"level":"error","ts":"2020-04-05T11:19:38.735+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002db360"}
+{"level":"error","ts":"2020-04-05T11:19:58.466+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002dbef0"}
+{"level":"error","ts":"2020-04-05T11:23:33.880+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0003051c0"}
+{"level":"error","ts":"2020-04-05T11:30:56.578+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc000490900"}
+{"level":"error","ts":"2020-04-05T12:14:55.725+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc00003ce10"}
+{"level":"error","ts":"2020-04-05T12:15:05.649+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002da270"}
+{"level":"error","ts":"2020-04-05T12:15:08.861+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc00003d850"}
+{"level":"error","ts":"2020-04-05T12:15:09.892+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0001de450"}
+{"level":"error","ts":"2020-04-05T12:15:10.427+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002dae10"}
+{"level":"error","ts":"2020-04-05T12:15:10.867+0800","caller":"repository/UserRepository.go:72","msg":"invalid query condition: 0xc0002db9a0"}
+{"level":"info","ts":"2020-04-05T12:26:38.218+0800","caller":"controller/userController.go:72","msg":"before !a.Service.ExistUserByName(user.Username)aguncn"}
+{"level":"info","ts":"2020-04-05T12:26:38.218+0800","caller":"service/UserService.go:101","msg":" models.User{Username: username}{0 0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC aguncn   0 0 0   []}"}
+{"level":"error","ts":"2020-04-05T12:26:38.220+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00008bc10"}
+{"level":"info","ts":"2020-04-05T12:26:38.220+0800","caller":"controller/userController.go:74","msg":"after !a.Service.ExistUserByName(user.Username)aguncn"}
+{"level":"info","ts":"2020-04-05T12:26:38.220+0800","caller":"controller/userController.go:75","msg":"before a.Service.AddUser(&user)aguncn"}
+{"level":"info","ts":"2020-04-05T12:26:38.238+0800","caller":"controller/userController.go:78","msg":"after  a.Service.AddUser(&user)aguncn"}
+{"level":"error","ts":"2020-04-05T12:45:34.598+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc000304fc0"}
+{"level":"error","ts":"2020-04-05T12:46:21.457+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc000305bc0"}
+{"level":"error","ts":"2020-04-05T12:53:36.463+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0003b52a0"}
+{"level":"error","ts":"2020-04-05T12:53:38.385+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0003b5e70"}
+{"level":"error","ts":"2020-04-05T12:53:39.128+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0003f4760"}
+{"level":"error","ts":"2020-04-05T12:57:33.864+0800","caller":"repository/BaseRepository.go:62","msg":"where interface{}%!(EXTRA *interface {}=0xc00008db00)"}
+{"level":"error","ts":"2020-04-05T12:57:33.864+0800","caller":"repository/BaseRepository.go:63","msg":"selects%!(EXTRA []string=[id])"}
+{"level":"error","ts":"2020-04-05T12:57:33.865+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00008db00"}
+{"level":"error","ts":"2020-04-05T12:58:14.760+0800","caller":"repository/BaseRepository.go:62","msg":"where interface{}%!(EXTRA *interface {}=0xc00048e720)"}
+{"level":"error","ts":"2020-04-05T12:58:14.761+0800","caller":"repository/BaseRepository.go:63","msg":"selects%!(EXTRA []string=[id])"}
+{"level":"error","ts":"2020-04-05T12:58:14.762+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00048e720"}
+{"level":"error","ts":"2020-04-05T12:59:48.008+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00039e8c0"}
+{"level":"error","ts":"2020-04-05T13:00:11.984+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00033e890"}
+{"level":"error","ts":"2020-04-05T13:27:05.721+0800","caller":"repository/UserRepository.go:73","msg":"unsupported destination, should be slice or struct"}
+{"level":"error","ts":"2020-04-05T13:27:06.941+0800","caller":"repository/UserRepository.go:73","msg":"unsupported destination, should be slice or struct"}
+{"level":"error","ts":"2020-04-05T13:27:07.556+0800","caller":"repository/UserRepository.go:73","msg":"unsupported destination, should be slice or struct"}
+{"level":"error","ts":"2020-04-05T13:27:07.876+0800","caller":"repository/UserRepository.go:73","msg":"unsupported destination, should be slice or struct"}
+{"level":"error","ts":"2020-04-05T13:34:45.167+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0002b6920"}
+{"level":"error","ts":"2020-04-05T13:34:46.573+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0002b7950"}
+{"level":"error","ts":"2020-04-05T13:37:38.277+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0002d3060"}
+{"level":"error","ts":"2020-04-05T13:37:39.911+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00008adf0"}
+{"level":"error","ts":"2020-04-05T13:38:00.451+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00028d680"}
+{"level":"error","ts":"2020-04-05T13:52:04.554+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00008de60"}
+{"level":"error","ts":"2020-04-05T13:57:37.308+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00028a670"}
+{"level":"error","ts":"2020-04-05T13:57:38.216+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00028b6a0"}
+{"level":"error","ts":"2020-04-05T14:08:10.765+0800","caller":"repository/UserRepository.go:29","msg":"获取用户头像失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-05T14:08:10.772+0800","caller":"repository/UserRepository.go:38","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-05T14:13:40.220+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0000f5f60"}
+{"level":"error","ts":"2020-04-05T14:13:43.983+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc0001070d0"}
+{"level":"error","ts":"2020-04-05T14:14:05.755+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc000107a90"}
+{"level":"error","ts":"2020-04-05T14:15:16.678+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00039a2b0"}
+{"level":"error","ts":"2020-04-05T14:15:19.891+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00039b050"}
+{"level":"error","ts":"2020-04-05T14:15:22.773+0800","caller":"repository/UserRepository.go:73","msg":"invalid query condition: 0xc00039bd70"}
+{"level":"error","ts":"2020-04-05T16:45:48.055+0800","caller":"repository/UserRepository.go:78","msg":"invalid query condition: 0xc0004007e0"}
+{"level":"error","ts":"2020-04-05T16:46:54.490+0800","caller":"repository/UserRepository.go:78","msg":"invalid query condition: 0xc000285330"}
+{"level":"error","ts":"2020-04-05T16:47:44.281+0800","caller":"repository/UserRepository.go:78","msg":"invalid query condition: 0xc000285f10"}
+{"level":"error","ts":"2020-04-05T17:36:34.469+0800","caller":"repository/UserRepository.go:19","msg":"用户名或密码错误%!(EXTRA *errors.errorString=record not found)"}

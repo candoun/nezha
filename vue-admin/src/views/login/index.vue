@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
-    <el-tabs v-model="activeName">
-      <el-tab-pane label="登录" name="login" :key="'login'">
-        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-tabs v-model="activeName" @tab-click="handleTabClick">
+      <el-tab-pane label="登录" :key="'login'" name="login" >
+        <el-form  v-if="tabLogin" ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
           <el-form-item prop="username">
             <span class="svg-container">
               <svg-icon icon-class="user" />
@@ -40,8 +40,8 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="注册" name="register" :key="'register'">
-        <el-form ref="registerForm" :model="registerForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+      <el-tab-pane label="注册" :key="'register'" name="register" >
+        <el-form  v-if="tabRegister" ref="registerForm" :model="registerForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
           <el-form-item prop="username">
             <span class="svg-container">
               <svg-icon icon-class="user" />
@@ -118,14 +118,16 @@ export default {
     }
     return {
       activeName: "login",
+      tabLogin:true,
+      tabRegister:false,
       loginForm: {
         username: 'admin',
         password: '111111'
       },
       registerForm: {
-        username: 'admin',
-        password: '',
-        password1: '',
+        username: 'aguncn',
+        password: '12345678',
+        password1: '12345678',
       },
       loginRules: {
         password: [{ required: true, trigger: 'blur', validator: validatePwd }]
@@ -154,6 +156,15 @@ export default {
         this.$refs.password.focus()
       })
     },
+    handleTabClick(tab) {
+      if (tab.name ==='login') {
+        this.tabLogin =true
+        this.tabRegister =false
+      }else if (tab.name ==='register') {
+        this.tabLogin =false
+        this.tabRegister =true
+      }
+    },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -171,27 +182,31 @@ export default {
       })
     },
     handleRegister() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.registerForm.validate(valid => {
         if (valid) {
           if (this.registerForm.password !== this.registerForm.password1) {
             this.$message.error('两次密码输入不一致。')
             return false
           } else {
             this.loading = true
-            this.$store.dispatch('user/register', this.registerForm).then(() => {
-              this.$router.push({ path: '/login' })
+            this.$store.dispatch('user/register', this.registerForm).then((data) => {
+              if (data.code === 200) {
+                this.$message.success('注册成功，请登陆。')
+              } else if (data.code === 30001) {
+                this.$message.error('亲，用户已存在，请选择其它用户名！')
+              } else {
+                this.$message.error('未知错误！')
+              }
               this.loading = false
-            }).catch(() => {
-              this.$message.error('用户名或密码错误')
-              this.loading = false
+            }).catch((e) => {
+              this.$message.error('未知错误！')
+              return false
             })
           }
         } else {
           return false
         }
       })
-      console.log("hahah")
-
     }
   }
 }
@@ -242,7 +257,6 @@ $bg:#283443;
     display: inline-block;
     height: 47px;
     width: 85%;
-
     input {
       background: transparent;
       border: 0px;
@@ -257,7 +271,6 @@ $bg:#283443;
       }
     }
   }
-
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);

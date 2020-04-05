@@ -20,7 +20,7 @@ type User struct {
 	CreatedBy  string    `json:"created_by"`
 	ModifiedBy string    `json:"modified_by"`
 
-	Application []Application
+	Application *[]Application
 }
 
 //BeforeCreate CreatedOn赋值

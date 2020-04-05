@@ -64,6 +64,7 @@ func Configure(r *gin.Engine) {
 	if err := db.Connect(); err != nil {
 		log.Fatal("db fatal:", err)
 	}
+	r.POST("/register", user.RegisterUser)
 	var authMiddleware = myjwt.GinJWTMiddlewareInit(jwt.AllUserAuthorizator)
 	r.NoRoute(authMiddleware.MiddlewareFunc(), jwt.NoRouteHandler)
 	r.POST("/login", authMiddleware.LoginHandler)

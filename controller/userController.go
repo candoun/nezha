@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -52,8 +53,43 @@ func (a *User) GetUsers(c *gin.Context) {
 		maps = "username LIKE '%" + name + "%'"
 	}
 	page, pagesize := GetPage(c)
+	fmt.Println(page, pagesize, maps, "@@@@@@@@@@@@")
 	data := a.Service.GetUsers(page, pagesize, maps)
 	RespData(c, http.StatusOK, code, data)
+}
+
+//RegisterUser 注册用户
+func (a *User) RegisterUser(c *gin.Context) {
+	user := models.User{}
+	code := codes.InvalidParams
+	err := c.Bind(&user)
+	if err == nil {
+		valid := validation.Validation{}
+		valid.Required(user.Username, "username").Message("用户名不能为空")
+		valid.Required(user.Password, "password").Message("密码不能为空")
+		if !valid.HasErrors() {
+			user.CreatedBy = user.Username
+			user.State = 1
+			// 0 - dev; 1 - admin
+			user.UserType = 0
+			user.Avatar = "https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG"
+			if !a.Service.ExistUserByName(user.Username) {
+				if a.Service.AddUser(&user) {
+					code = codes.SUCCESS
+				} else {
+					code = codes.ERROR
+				}
+			} else {
+				code = codes.ErrExistUser
+			}
+		} else {
+			for _, err := range valid.Errors {
+				a.Log.Info("err.key: %s, err.message: %s", err.Key, err.Message)
+			}
+		}
+	}
+
+	RespOk(c, http.StatusOK, code)
 }
 
 //AddUser 新建用户

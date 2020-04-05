@@ -63,7 +63,7 @@ func (a *UserRepository) AddUser(user *models.User) bool {
 func (a *UserRepository) ExistUserByName(where interface{}) bool {
 	var user models.User
 	sel := "id"
-	err := a.Base.First(&where, &user, sel)
+	err := a.Base.First(where, &user, sel)
 	//记录不存在错误(RecordNotFound)，返回false
 	if gorm.IsRecordNotFoundError(err) {
 		return false
