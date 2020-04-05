@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/bingjian-zhu/gin-vue-admin/common/datasource"
-	"github.com/bingjian-zhu/gin-vue-admin/common/setting"
-	"github.com/bingjian-zhu/gin-vue-admin/routers"
+	"github.com/aguncn/nezha/common/datasource"
+	"github.com/aguncn/nezha/common/setting"
+	"github.com/aguncn/nezha/routers"
 )
 
 // 是否重新生成数据库

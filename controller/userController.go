@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/aguncn/nezha/common/codes"
+	"github.com/aguncn/nezha/common/logger"
+	"github.com/aguncn/nezha/models"
+	"github.com/aguncn/nezha/page"
+	"github.com/aguncn/nezha/service"
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/astaxie/beego/validation"
-	"github.com/bingjian-zhu/gin-vue-admin/common/codes"
-	"github.com/bingjian-zhu/gin-vue-admin/common/logger"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
-	"github.com/bingjian-zhu/gin-vue-admin/page"
-	"github.com/bingjian-zhu/gin-vue-admin/service"
 	"github.com/gin-gonic/gin"
 )
 

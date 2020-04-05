@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/bingjian-zhu/gin-vue-admin/common/setting"
+	"github.com/aguncn/nezha/common/setting"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"

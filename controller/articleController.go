@@ -7,10 +7,10 @@ import (
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 
-	"github.com/bingjian-zhu/gin-vue-admin/common/codes"
-	"github.com/bingjian-zhu/gin-vue-admin/common/logger"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
-	"github.com/bingjian-zhu/gin-vue-admin/service"
+	"github.com/aguncn/nezha/common/codes"
+	"github.com/aguncn/nezha/common/logger"
+	"github.com/aguncn/nezha/models"
+	"github.com/aguncn/nezha/service"
 )
 
 // Article 注入IArticleService

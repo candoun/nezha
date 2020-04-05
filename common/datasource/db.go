@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/bingjian-zhu/gin-vue-admin/common/setting"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
+	"github.com/aguncn/nezha/common/setting"
+	"github.com/aguncn/nezha/models"
 	"github.com/jinzhu/gorm"
 
 	//

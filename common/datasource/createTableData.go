@@ -3,7 +3,7 @@ package datasource
 import (
 	"fmt"
 
-	"github.com/bingjian-zhu/gin-vue-admin/models"
+	"github.com/aguncn/nezha/models"
 	"github.com/jinzhu/gorm"
 )
 

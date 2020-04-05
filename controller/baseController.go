@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/bingjian-zhu/gin-vue-admin/common/codes"
-	"github.com/bingjian-zhu/gin-vue-admin/common/setting"
+	"github.com/aguncn/nezha/common/codes"
+	"github.com/aguncn/nezha/common/setting"
 )
 
 //ResponseData 数据返回结构体

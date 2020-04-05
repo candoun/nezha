@@ -1,4 +1,4 @@
-module github.com/bingjian-zhu/gin-vue-admin
+module github.com/aguncn/nezha
 
 go 1.13
 

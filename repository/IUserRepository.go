@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/bingjian-zhu/gin-vue-admin/models"
+import "github.com/aguncn/nezha/models"
 
 //IUserRepository User接口定义
 type IUserRepository interface {

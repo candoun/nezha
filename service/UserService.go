@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/bingjian-zhu/gin-vue-admin/common/logger"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
-	pageModel "github.com/bingjian-zhu/gin-vue-admin/page"
-	"github.com/bingjian-zhu/gin-vue-admin/page/emun"
-	"github.com/bingjian-zhu/gin-vue-admin/repository"
+	"github.com/aguncn/nezha/common/logger"
+	"github.com/aguncn/nezha/models"
+	pageModel "github.com/aguncn/nezha/page"
+	"github.com/aguncn/nezha/page/emun"
+	"github.com/aguncn/nezha/repository"
 )
 
 // UserService 注入IUserRepository

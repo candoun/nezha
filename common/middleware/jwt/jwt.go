@@ -8,11 +8,11 @@ import (
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 
-	"github.com/bingjian-zhu/gin-vue-admin/common/codes"
-	"github.com/bingjian-zhu/gin-vue-admin/common/helper"
-	"github.com/bingjian-zhu/gin-vue-admin/common/setting"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
-	"github.com/bingjian-zhu/gin-vue-admin/service"
+	"github.com/aguncn/nezha/common/codes"
+	"github.com/aguncn/nezha/common/helper"
+	"github.com/aguncn/nezha/common/setting"
+	"github.com/aguncn/nezha/models"
+	"github.com/aguncn/nezha/service"
 )
 
 //### 如果是使用Go Module,gin-jwt模块应使用v2

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/bingjian-zhu/gin-vue-admin/common/logger"
-	"github.com/bingjian-zhu/gin-vue-admin/models"
+	"github.com/aguncn/nezha/common/logger"
+	"github.com/aguncn/nezha/models"
 )
 
 //ArticleRepository 注入IDb

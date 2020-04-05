@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/bingjian-zhu/gin-vue-admin/models"
-	"github.com/bingjian-zhu/gin-vue-admin/page"
-	"github.com/bingjian-zhu/gin-vue-admin/page/emun"
-	"github.com/bingjian-zhu/gin-vue-admin/repository"
+	"github.com/aguncn/nezha/models"
+	"github.com/aguncn/nezha/page"
+	"github.com/aguncn/nezha/page/emun"
+	"github.com/aguncn/nezha/repository"
 )
 
 // ArticleService 注入IArticleRepo
