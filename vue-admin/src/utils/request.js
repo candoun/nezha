@@ -74,8 +74,8 @@ service.interceptors.response.use(
     }
   },
   error => {
-    // if code is 401, refresh the token
-    if (error.response && error.response.status === 401) {
+    // if code is 402, refresh the token(401在jwt里可以额外返回处理，http code和msg code可以区分)
+    if (error.response && error.response.status === 402) {
       var curTime = new Date()
       var tokenExpire = new Date(getTokenExpire())
       var allowTime = new Date(curTime.setMinutes(curTime.getMinutes() + 30))
@@ -89,6 +89,8 @@ service.interceptors.response.use(
           location.reload()
         })
       }
+    } else if (error.response && error.response.status === 401) {
+      console.log('err' + error) // for debug
     } else if (error.response && error.response.status === 403) {
       router.push({ path: '/403' })
     } else {

@@ -18,7 +18,7 @@ type UserService struct {
 //CheckUser 身份验证
 func (a *UserService) CheckUser(username string, password string) bool {
 	where := models.User{Username: username, Password: password}
-	return a.Repository.CheckUser(&where)
+	return a.Repository.CheckUser(where)
 }
 
 //GetUserAvatar 获取用户头像

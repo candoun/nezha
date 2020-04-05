@@ -14,6 +14,7 @@ require (
 	github.com/jinzhu/gorm v1.9.11
 	github.com/tidwall/gjson v1.3.2 // indirect
 	go.uber.org/zap v1.12.0
+	golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529
 	golang.org/x/sys v0.0.0-20190507160741-ecd444e8653b // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v2 v2.2.2

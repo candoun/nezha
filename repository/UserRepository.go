@@ -4,6 +4,7 @@ import (
 	"github.com/aguncn/nezha/common/logger"
 	"github.com/aguncn/nezha/models"
 	"github.com/jinzhu/gorm"
+	"golang.org/x/crypto/bcrypt"
 )
 
 //UserRepository 注入IDb
@@ -15,8 +16,14 @@ type UserRepository struct {
 //CheckUser 身份验证
 func (a *UserRepository) CheckUser(where interface{}) bool {
 	var user models.User
-	if err := a.Base.First(where, &user); err != nil {
-		a.Log.Errorf("用户名或密码错误", err)
+	var whereUser = models.User{Username: where.(models.User).Username}
+	if err := a.Base.First(whereUser, &user); err != nil {
+		a.Log.Errorf("用户名错误", err)
+		return false
+	}
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(where.(models.User).Password))
+	if err != nil {
+		a.Log.Errorf("密码错误", err)
 		return false
 	}
 	return true

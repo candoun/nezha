@@ -51,7 +51,7 @@ const actions = {
         commit('SET_TOKENEXPIRE', data.expire)
         setToken(data.token)
         setTokenExpire(data.expire)
-        resolve()
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

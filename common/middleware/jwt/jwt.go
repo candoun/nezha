@@ -2,6 +2,7 @@ package jwt
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"time"
 
@@ -87,6 +88,7 @@ func (j *JWT) GinJWTMiddlewareInit(jwtAuthorizator JwtAuthorizator) (authMiddlew
 		Authorizator: jwtAuthorizator,
 		//handles unauthorized logic
 		Unauthorized: func(c *gin.Context, code int, message string) {
+			fmt.Println(code, message, "@@@@@@@@")
 			c.JSON(code, gin.H{
 				"code":    code,
 				"message": message,
