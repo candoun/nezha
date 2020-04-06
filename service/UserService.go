@@ -33,13 +33,13 @@ func (a *UserService) GetRoles(username string) *[]string {
 	userWhere := models.User{Username: username}
 	userSel := "id"
 	userID := a.Repository.GetUserID(&userSel, &userWhere)
-	roleWhere := models.Role{UserID: userID}
+	roleWhere := models.Role{UserID: uint(userID)}
 	roleSel := "value"
 	return a.RoleRepository.GetRoles(&roleSel, &roleWhere)
 }
 
 //GetUsers 获取用户信息
-func (a *UserService) GetUsers(page, pagesize int, maps interface{}) interface{} {
+func (a *UserService) GetUsers(page, pagesize uint, maps interface{}) interface{} {
 	res := make(map[string]interface{}, 2)
 	var total uint64
 	users := a.Repository.GetUsers(page, pagesize, &total, maps)
@@ -52,8 +52,8 @@ func (a *UserService) GetUsers(page, pagesize int, maps interface{}) interface{}
 		pageUser.Avatar = user.Avatar
 		pageUser.UserType = emun.GetUserType(user.UserType)
 		pageUser.State = emun.GetStatus(user.State)
-		pageUser.Deteled = emun.GetDeleted(user.Deleted)
-		pageUser.CreatedOn = user.CreatedOn.Format("2006-01-02 15:04:05")
+		pageUser.Deleted = emun.GetDeleted(user.Deleted)
+		pageUser.CreatedAt = user.CreatedAt.Format("2006-01-02 15:04:05")
 		pageUsers = append(pageUsers, pageUser)
 	}
 	res["list"] = &pageUsers
@@ -107,7 +107,7 @@ func (a *UserService) UpdateUser(modUser *models.User) bool {
 	//不允许更新用户名
 	// user.Username = modUser.Username
 	user.Password = modUser.Password
-	user.ModifiedBy = modUser.ModifiedBy
+	user.UpdatedBy = modUser.UpdatedBy
 	user.UserType = modUser.UserType
 	roleWhere := models.Role{UserID: user.ID}
 	role := a.RoleRepository.GetRole(&roleWhere)
@@ -120,7 +120,7 @@ func (a *UserService) UpdateUser(modUser *models.User) bool {
 }
 
 //DeleteUser 删除用户
-func (a *UserService) DeleteUser(id int) bool {
+func (a *UserService) DeleteUser(id uint) bool {
 	user := a.Repository.GetUserByID(id)
 	if user.Username == "admin" {
 		a.Log.Errorf("删除用户失败:不能删除admin账号")

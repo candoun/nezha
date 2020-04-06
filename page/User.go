@@ -10,12 +10,12 @@ type User struct {
 
 //Users 用户管理结构体
 type Users struct {
-	ID        int    `json:"id"`
+	ID        uint   `json:"id"`
 	Name      string `json:"username"`
 	Password  string `json:"password"`
 	Avatar    string `json:"avatar"`
 	UserType  string `json:"user_type"`
 	State     string `json:"state"`
-	Deteled   string `json:"deteled"`
-	CreatedOn string `json:"created_on"`
+	Deleted   string `json:"deteled"`
+	CreatedAt string `json:"created_at"`
 }

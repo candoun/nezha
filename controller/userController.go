@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -53,7 +52,6 @@ func (a *User) GetUsers(c *gin.Context) {
 		maps = "username LIKE '%" + name + "%'"
 	}
 	page, pagesize := GetPage(c)
-	fmt.Println(page, pagesize, maps, "@@@@@@@@@@@@")
 	data := a.Service.GetUsers(page, pagesize, maps)
 	RespData(c, http.StatusOK, code, data)
 }
@@ -137,8 +135,8 @@ func (a *User) UpdateUser(c *gin.Context) {
 		valid.Required(user.Password, "password").Message("密码不能为空")
 		if !valid.HasErrors() {
 			roles := jwt.ExtractClaims(c)
-			modifiedBy := roles["userName"].(string)
-			user.ModifiedBy = modifiedBy
+			UpdatedBy := roles["userName"].(string)
+			user.UpdatedBy = UpdatedBy
 			if a.Service.UpdateUser(&user) {
 				code = codes.SUCCESS
 			} else {
@@ -157,7 +155,7 @@ func (a *User) UpdateUser(c *gin.Context) {
 func (a *User) DeleteUser(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := codes.SUCCESS
-	if !a.Service.DeleteUser(id) {
+	if !a.Service.DeleteUser(uint(id)) {
 		code = codes.ERROR
 		RespFail(c, http.StatusOK, code, "不允许删除admin账号!")
 	} else {

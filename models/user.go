@@ -9,17 +9,15 @@ import (
 
 //User 用户授权信息
 type User struct {
-	ID         int       `gorm:"primary_key" json:"id"`
-	CreatedOn  time.Time `json:"created_on"`
-	ModifiedOn time.Time `json:"modified_on"`
-	Username   string    `json:"username"`
-	Password   string    `json:"password"`
-	Avatar     string    `json:"avatar"`
-	UserType   int       `json:"user_type"`
-	Deleted    int       `json:"deteled"`
-	State      int       `json:"state"`
-	CreatedBy  string    `json:"created_by"`
-	ModifiedBy string    `json:"modified_by"`
+	gorm.Model
+	CreatedBy string `json:"created_by"`
+	UpdatedBy string `json:"updated_by"`
+	Deleted   uint   `json:"deteled"`
+	State     uint   `json:"state"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Avatar    string `json:"avatar"`
+	UserType  uint   `json:"user_type"`
 
 	Application *[]Application
 }
@@ -31,7 +29,7 @@ func (user *User) BeforeCreate(scope *gorm.Scope) error {
 }
 
 func (user *User) BeforeSave(scope *gorm.Scope) (err error) {
-	if pw, err := bcrypt.GenerateFromPassword([]byte(user.Password), 0); err == nil {
+	if pw, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost); err == nil {
 		scope.SetColumn("Password", pw)
 	}
 	return nil

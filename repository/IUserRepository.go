@@ -9,9 +9,9 @@ type IUserRepository interface {
 	//GetUserAvatar 获取用户头像
 	GetUserAvatar(sel *string, where interface{}) *string
 	//GetUserID 获取用户ID
-	GetUserID(sel *string, where interface{}) int
+	GetUserID(sel *string, where interface{}) uint
 	//GetUsers 获取用户信息
-	GetUsers(PageNum int, PageSize int, total *uint64, where interface{}) *[]models.User
+	GetUsers(PageNum uint, PageSize uint, total *uint64, where interface{}) *[]models.User
 	//AddUser 新建用户
 	AddUser(user *models.User) bool
 	//ExistUserByName 判断用户名是否已存在
@@ -19,7 +19,7 @@ type IUserRepository interface {
 	//UpdateUser 更新用户
 	UpdateUser(user *models.User, role *models.Role) bool
 	//DeleteUser 更新用户
-	DeleteUser(id int) bool
+	DeleteUser(id uint) bool
 	//GetUserByID 获取用户
-	GetUserByID(id int) *models.User
+	GetUserByID(id uint) *models.User
 }

@@ -65,11 +65,13 @@ func RespJSON(c *gin.Context, httpCode int, resp interface{}) {
 }
 
 //GetPage 获取每页数量
-func GetPage(c *gin.Context) (page, pagesize int) {
-	page, _ = strconv.Atoi(c.Query("page"))
-	pagesize, _ = strconv.Atoi(c.Query("limit"))
+func GetPage(c *gin.Context) (page, pagesize uint) {
+	pageInt, _ := strconv.Atoi(c.Query("page"))
+	pagesizeInt, _ := strconv.Atoi(c.Query("limit"))
+	page = uint(pageInt)
+	pagesize = uint(pagesizeInt)
 	if pagesize == 0 {
-		pagesize = setting.Config.APP.Pagesize
+		pagesize = uint(setting.Config.APP.Pagesize)
 	}
 	if page == 0 {
 		page = 1

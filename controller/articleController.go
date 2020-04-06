@@ -27,7 +27,7 @@ func (a *Article) GetArticle(c *gin.Context) {
 	var data *models.Article
 	code := codes.InvalidParams
 	if !valid.HasErrors() {
-		data = a.Service.GetArticle(id)
+		data = a.Service.GetArticle(uint(id))
 		code = codes.SUCCESS
 	} else {
 		for _, err := range valid.Errors {
@@ -51,7 +51,7 @@ func (a *Article) AddArticle(c *gin.Context) {
 	code := codes.InvalidParams
 	err := c.Bind(&article)
 	if err == nil {
-		article.ModifiedOn = article.CreatedOn
+		article.UpdatedAt = article.CreatedAt
 		valid := validation.Validation{}
 		valid.Min(article.TagID, 0, "tag_id").Message("标签ID必须不小于0")
 		valid.Required(article.Title, "title").Message("标题不能为空")

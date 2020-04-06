@@ -5,6 +5,7 @@ import (
 	"github.com/aguncn/nezha/page"
 	"github.com/aguncn/nezha/page/emun"
 	"github.com/aguncn/nezha/repository"
+	"github.com/jinzhu/gorm"
 )
 
 // ArticleService 注入IArticleRepo
@@ -13,13 +14,13 @@ type ArticleService struct {
 }
 
 //GetArticle 根据id获取Article
-func (a *ArticleService) GetArticle(id int) *models.Article {
-	where := models.Article{ID: id}
+func (a *ArticleService) GetArticle(id uint) *models.Article {
+	where := models.Article{Model: gorm.Model{ID: id}}
 	return a.Repository.GetArticle(&where)
 }
 
 //GetTables 分页返回文章
-func (a *ArticleService) GetTables(pageNum, pagesize int) *[]page.Article {
+func (a *ArticleService) GetTables(pageNum, pagesize uint) *[]page.Article {
 	var (
 		pageArticles []page.Article
 		pageArticle  page.Article
@@ -29,7 +30,7 @@ func (a *ArticleService) GetTables(pageNum, pagesize int) *[]page.Article {
 	for _, article := range *articles {
 		pageArticle.ID = article.ID
 		pageArticle.Author = article.CreatedBy
-		pageArticle.DisplayTime = article.ModifiedOn.String()
+		pageArticle.DisplayTime = article.UpdatedAt.String()
 		pageArticle.Pageviews = 3474
 		pageArticle.Status = emun.GetArticleStatus(article.State)
 		pageArticle.Title = article.Title
@@ -44,7 +45,7 @@ func (a *ArticleService) AddArticle(article *models.Article) bool {
 }
 
 //GetArticles 获取文章信息
-func (a *ArticleService) GetArticles(PageNum int, PageSize int, total *uint64, where interface{}) *[]models.Article {
+func (a *ArticleService) GetArticles(PageNum, PageSize uint, total *uint64, where interface{}) *[]models.Article {
 	return a.Repository.GetArticles(PageNum, PageSize, total, where)
 }
 

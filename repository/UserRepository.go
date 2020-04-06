@@ -39,17 +39,17 @@ func (a *UserRepository) GetUserAvatar(sel *string, where interface{}) *string {
 }
 
 //GetUserID 获取用户ID
-func (a *UserRepository) GetUserID(sel *string, where interface{}) int {
+func (a *UserRepository) GetUserID(sel *string, where interface{}) uint {
 	var user models.User
 	if err := a.Base.First(where, &user, *sel); err != nil {
 		a.Log.Errorf("获取用户ID失败", err)
-		return -1
+		return 0
 	}
 	return user.ID
 }
 
 //GetUsers 获取用户信息
-func (a *UserRepository) GetUsers(PageNum int, PageSize int, total *uint64, where interface{}) *[]models.User {
+func (a *UserRepository) GetUsers(PageNum uint, PageSize uint, total *uint64, where interface{}) *[]models.User {
 	var users []models.User
 	if err := a.Base.GetPages(&models.User{}, &users, PageNum, PageSize, total, where); err != nil {
 		a.Log.Errorf("获取用户信息失败", err)
@@ -102,10 +102,10 @@ func (a *UserRepository) UpdateUser(user *models.User, role *models.Role) bool {
 }
 
 //DeleteUser 删除用户同时删除用户的角色
-func (a *UserRepository) DeleteUser(id int) bool {
+func (a *UserRepository) DeleteUser(id uint) bool {
 	//采用事务同时删除用户和相应的用户角色
 	var (
-		userWhere = models.User{ID: id}
+		userWhere = models.User{Model: gorm.Model{ID: id}}
 		user      models.User
 		roleWhere = models.Role{UserID: id}
 		role      models.Role
@@ -122,7 +122,7 @@ func (a *UserRepository) DeleteUser(id int) bool {
 }
 
 //GetUserByID 获取用户
-func (a *UserRepository) GetUserByID(id int) *models.User {
+func (a *UserRepository) GetUserByID(id uint) *models.User {
 	var user models.User
 	if err := a.Base.FirstByID(&user, id); err != nil {
 		a.Log.Error(err)

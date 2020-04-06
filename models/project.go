@@ -8,16 +8,15 @@ import (
 
 //Project 项目结构体
 type Project struct {
-	ID          int       `gorm:"primary_key" json:"id"`
-	CreatedOn   time.Time `json:"created_on"`
-	ModifiedOn  time.Time `json:"modified_on"`
-	Name        string    `json:"name"`
-	CnName      string    `json:"cn_name"`
-	Description string    `json:"description"`
-	UserID      int       `json:"user_id"`
-	CreatedBy   string    `json:"created_by"`
-	ModifiedBy  string    `json:"modified_by"`
-	State       int       `json:"state"`
+	gorm.Model
+	CreatedBy   string `json:"created_by"`
+	UpdatedBy   string `json:"updated_by"`
+	Deleted     uint   `json:"deteled"`
+	State       uint   `json:"state"`
+	Name        string `json:"name"`
+	CnName      string `json:"cn_name"`
+	Description string `json:"description"`
+	UserID      uint   `json:"user_id"`
 
 	Application []Application
 }

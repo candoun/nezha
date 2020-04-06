@@ -8,13 +8,12 @@ import (
 
 //Tag 标签结构体
 type Tag struct {
-	ID         int       `gorm:"primary_key" json:"id"`
-	CreatedOn  time.Time `json:"created_on"`
-	ModifiedOn time.Time `json:"modified_on"`
-	Name       string    `json:"name"`
-	CreatedBy  string    `json:"created_by"`
-	ModifiedBy string    `json:"modified_by"`
-	State      int       `json:"state"`
+	gorm.Model
+	CreatedBy string `json:"created_by"`
+	UpdatedBy string `json:"updated_by"`
+	Deleted   uint   `json:"deteled"`
+	State     int    `json:"state"`
+	Name      string `json:"name"`
 }
 
 //BeforeCreate CreatedOn赋值
