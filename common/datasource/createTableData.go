@@ -2,6 +2,7 @@ package datasource
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
@@ -37,8 +38,13 @@ func initData() {
 	mockData["role2"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (2, 1, 'admin', 'test')"
 	mockData["role3"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (3, 2, 'test', 'test')"
 
-	mockData["article1"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (1, 1, 'test1',  'test1-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
-	mockData["article2"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (2, 1, 'test2',  'test2-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
-	mockData["article3"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (3, 1, 'test3',  'test3-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
+	for i := 1; i < 88; i++ {
+		key := "article " + string(i)
+		value := fmt.Sprintf("INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (%d, 1, '%s',  'test1-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);", i, "title-"+strconv.Itoa(i))
+		mockData[key] = value
+	}
+	//mockData["article1"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (1, 1, 'test1',  'test1-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
+	//mockData["article2"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (2, 1, 'test2',  'test2-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
+	//mockData["article3"] = "INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (3, 1, 'test3',  'test3-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);"
 
 }

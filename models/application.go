@@ -16,20 +16,22 @@ type Application struct {
 	Name        string `json:"name"`
 	CnName      string `json:"cn_name"`
 	Description string `json:"description"`
+	Git         string `json:"git"`
+	Jenkins     string `json:"jenkins"`
 	UserID      uint   `json:"user_id"`
 	ProjectID   uint   `json:"project_id"`
 }
 
 //BeforeCreate CreatedOn赋值
 func (application *Application) BeforeCreate(scope *gorm.Scope) error {
-	scope.SetColumn("CreatedOn", time.Now().Unix())
+	scope.SetColumn("CreatedAt", time.Now().Unix())
 
 	return nil
 }
 
 //BeforeUpdate ModifiedOn赋值
 func (application *Application) BeforeUpdate(scope *gorm.Scope) error {
-	scope.SetColumn("ModifiedOn", time.Now().Unix())
+	scope.SetColumn("UpdatedAt", time.Now().Unix())
 
 	return nil
 }

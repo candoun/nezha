@@ -35,14 +35,19 @@ func Configure(r *gin.Engine) {
 	var myjwt jwt.JWT
 	//inject declare
 	var article controller.Article
+	var application controller.Application
 	db := datasource.Db{}
 	zap := logger.Logger{}
 	//Injection
 	var injector inject.Graph
 	if err := injector.Provide(
-		&inject.Object{Value: &article},
 		&inject.Object{Value: &db},
 		&inject.Object{Value: &zap},
+		&inject.Object{Value: &myjwt},
+		&inject.Object{Value: &application},
+		&inject.Object{Value: &repository.ApplicationRepository{}},
+		&inject.Object{Value: &service.ApplicationService{}},
+		&inject.Object{Value: &article},
 		&inject.Object{Value: &repository.ArticleRepository{}},
 		&inject.Object{Value: &service.ArticleService{}},
 		&inject.Object{Value: &user},
@@ -50,7 +55,6 @@ func Configure(r *gin.Engine) {
 		&inject.Object{Value: &service.UserService{}},
 		&inject.Object{Value: &repository.RoleRepository{}},
 		&inject.Object{Value: &service.RoleService{}},
-		&inject.Object{Value: &myjwt},
 		&inject.Object{Value: &repository.BaseRepository{}},
 	); err != nil {
 		log.Fatal("inject fatal: ", err)
@@ -68,6 +72,18 @@ func Configure(r *gin.Engine) {
 	var authMiddleware = myjwt.GinJWTMiddlewareInit(jwt.AllUserAuthorizator)
 	r.NoRoute(authMiddleware.MiddlewareFunc(), jwt.NoRouteHandler)
 	r.POST("/login", authMiddleware.LoginHandler)
+
+	applicationAPI := r.Group("/appliction")
+	applicationAPI.Use(authMiddleware.MiddlewareFunc())
+	{
+		applicationAPI.GET("/list", application.GetApplications)
+		applicationAPI.GET("/detail/:id", application.GetApplication)
+		applicationAPI.POST("/", application.AddApplication)
+		//apiv1.PUT("/application/:id", application.EditApplication)
+		//apiv1.DELETE("/application/:id", application.DeleteApplication)
+
+	}
+
 	userAPI := r.Group("/user")
 	{
 		userAPI.GET("/refresh_token", authMiddleware.RefreshHandler)

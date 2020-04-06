@@ -62,23 +62,23 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/deploy',
     component: Layout,
-    redirect: '/example/table',
-    name: '示例',
-    meta: { title: '示例', icon: 'example' },
+    redirect: '/deploy/application',
+    name: '应用部署',
+    meta: { title: '应用部署', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'application',
+        name: 'Application',
+        component: () => import('@/views/deploy/application/index'),
+        meta: { title: '应用列表', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'applog',
+        name: 'AppLog',
+        component: () => import('@/views/deploy/applog/index'),
+        meta: { title: '部署日志', icon: 'tree' }
       }
     ]
   }
