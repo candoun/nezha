@@ -52,3 +52,6 @@
 {"level":"info","ts":"2020-04-06T14:17:04.686+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
 {"level":"info","ts":"2020-04-06T16:51:09.288+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %stag_id标签ID必须不小于0"}
 {"level":"info","ts":"2020-04-06T16:51:09.289+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-07T22:36:24.733+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %stag_id标签ID必须不小于0"}
+{"level":"info","ts":"2020-04-07T22:36:24.733+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %sdesc简述不能为空"}
+{"level":"info","ts":"2020-04-07T22:36:24.734+0800","caller":"controller/articleController.go:70","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}

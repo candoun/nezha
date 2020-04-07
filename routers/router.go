@@ -73,7 +73,7 @@ func Configure(r *gin.Engine) {
 	r.NoRoute(authMiddleware.MiddlewareFunc(), jwt.NoRouteHandler)
 	r.POST("/login", authMiddleware.LoginHandler)
 
-	applicationAPI := r.Group("/appliction")
+	applicationAPI := r.Group("/application")
 	applicationAPI.Use(authMiddleware.MiddlewareFunc())
 	{
 		applicationAPI.GET("/list", application.GetApplications)
