@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"time"
 
@@ -40,7 +39,7 @@ func (j *JWT) GinJWTMiddlewareInit(jwtAuthorizator JwtAuthorizator) (authMiddlew
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
-		Timeout:     time.Minute * 5,
+		Timeout:     time.Minute * 1440,
 		MaxRefresh:  time.Hour,
 		IdentityKey: app.IdentityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
@@ -88,7 +87,6 @@ func (j *JWT) GinJWTMiddlewareInit(jwtAuthorizator JwtAuthorizator) (authMiddlew
 		Authorizator: jwtAuthorizator,
 		//handles unauthorized logic
 		Unauthorized: func(c *gin.Context, code int, message string) {
-			fmt.Println(code, message, "@@@@@@@@")
 			c.JSON(code, gin.H{
 				"code":    code,
 				"message": message,
