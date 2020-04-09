@@ -1,7 +1,7 @@
 <template>
-	<el-button :size="size" :type="type" :icon="icon"
-		:loading="loading" @click="handleClick">
-		{{label}}
+	<el-button :size="size" :type="type" :icon="icon" :label="label"
+		:loading="loading" :plain="plain" :circle="circle" @click="handleClick">
+    <span v-if="isLabel"> {{ label }} </span>
 	</el-button>
 </template>
 
@@ -9,6 +9,10 @@
 	export default {
 		name: 'BtnSearchAdd',
 		props: {
+      isLabel: {
+      	type: Boolean,
+      	default: true
+      },
 			label: {
 				type: String,
 				default: 'Button'
@@ -29,6 +33,14 @@
 				type: Boolean,
 				default: false
 			},
+      plain: {
+      	type: Boolean,
+      	default: false
+      },
+      circle: {
+      	type: Boolean,
+      	default: false
+      },
 			disabled: {
 				type: Boolean,
 				default: false

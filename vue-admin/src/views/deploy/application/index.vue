@@ -45,32 +45,33 @@
           <span>{{ scope.row.jenkins }}</span>
         </template>
       </el-table-column>
-
-
-      <el-table-column width="360px" align="center" >
-        <template slot-scope="scope">
-          <router-link :to="'/form/edit/'+scope.row.ID">
-            <el-button plain type="success" :size="size" icon="el-icon-info">
-              详情
-            </el-button>
-            <el-button plain type="danger" :size="size" icon="el-icon-delete">
-              删除
-            </el-button>
-            <el-button plain type="warning" :size="size" icon="el-icon-edit">
-              编辑
-            </el-button>
-          </router-link>
-
-        </template>
+      <el-table-column  width="300px" align="center" >
         <template slot-scope="scope">
           <btn-search-add
-            icon="fa fa-trash"
-            :label="'删除'"
+            icon="el-icon-info"
+            :size="size"
+            :plain="true"
+            :circle="true"
+            :isLabel="false"
+            type="info"
+            @click="handleView(scope.row)" />
+          <btn-search-add
+            icon="el-icon-edit"
+            :plain="true"
+            :circle="true"
+            :isLabel="false"
             :size="size"
             type="info"
+            @click="handleEdit(scope.row)" />
+          <btn-search-add
+            icon="el-icon-delete"
+            :plain="true"
+            :circle="true"
+            :isLabel="false"
+            :size="size"
+            type="danger"
             @click="handleDelete(scope.row)" />
         </template>
-
       </el-table-column>
       <el-table-column width="120px" align="center" >
         <template slot-scope="scope">
@@ -82,41 +83,9 @@
         </template>
       </el-table-column>
     </el-table>
-
-    <el-dialog
-      :title="title"
-      width="80%"
-      :visible="dialogVisible"
-      :close-on-click-modal="false">
-      <el-form
-        :model="dataForm"
-        label-width="100px"
-        :rules="dataFormRules"
-        ref="dataForm"
-        :size="size"
-        label-position="right">
-        <el-form-item label="ID" prop="id" v-if="false">
-          <el-input v-model="dataForm.id" :disabled="true" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="yaml文件名" prop="name">
-          <el-input v-model="dataForm.name" :readonly="readonly" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="描述" prop="description">
-          <el-input v-model="dataForm.description" :readonly="readonly" auto-complete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="Tag" prop="tag">
-          <el-input v-model="dataForm.tag" :readonly="readonly" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="文件内容" prop="content">
-          <el-input v-model="dataForm.content" :readonly="readonly" auto-complete="off" type="textarea" :rows="20"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button :size="size" @click.native="resetForm">Cancel</el-button>
-        <el-button :size="size" type="primary" v-show="!readonly" @click.native="submitForm" :loading="editLoading">保存</el-button>
-      </div>
-    </el-dialog>
+    <application-form
+      :dataForm="dataForm"
+      :dialogVisible="dialogVisible"/>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
@@ -126,24 +95,16 @@ import { fetchList } from '@/api/application'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 import BtnSearchAdd from '@/components/BtnSearchAdd'
+import ApplicationForm from './components/Form'
 
 export default {
   name: 'ApplicationList',
   components: {
     Pagination,
-    BtnSearchAdd
+    BtnSearchAdd,
+    ApplicationForm
   },
-  filters: {
-    statusFilter(state) {
-      const statusMap = {
-        1: 'success',
-        0: 'info',
-        2: 'danger'
-      }
-      return statusMap[state]
-    },
-    parseTime: parseTime
-  },
+
   data() {
     return {
       size: 'mini',
@@ -151,25 +112,16 @@ export default {
         label: ''
       },
       title: '',
-      readonly: false,
       dialogVisible: false,
       list: null,
       total: 0,
       listLoading: true,
-      editLoading: false,
+      readonly: false,
       listQuery: {
         page: 1,
         limit: 10
       },
-      dataFormRules: {
-        name: [
-          {
-            required: true,
-            message: '请输入yaml名称',
-            trigger: 'blur',
-          }
-        ]
-      },
+
       dataForm: {
         id: 0,
         name: 'k8s-yaml',
@@ -211,16 +163,11 @@ export default {
     handleView: function(params) {
       console.log("view")
     },
-    resetForm: function() {
-      this.dialogVisible = false
-      this.readonly = false
-      this.$refs['dataForm'].resetFields()
-    },
     handleDelete: function(row) {
-      this.delete(row.id)
+      this.delete(row.id, row.name)
     },
-    delete: function(ids) {
-      this.$confirm('确定删除选中的记录吗？', '提示', {
+    delete: function(id, name) {
+      this.$confirm('确定删除'+ name +'吗？', '提示', {
         type:'warning'
       }).then(() => {
         let params = []
