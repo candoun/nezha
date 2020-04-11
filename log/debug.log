@@ -63,3 +63,36 @@
 {"level":"info","ts":"2020-04-11T10:53:36.820+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
 {"level":"info","ts":"2020-04-11T10:53:44.851+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
 {"level":"info","ts":"2020-04-11T11:05:53.104+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T11:41:51.333+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:05:54.628+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:08:37.876+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:08:45.980+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:09:06.763+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:09:08.031+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:09:21.097+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:09:29.831+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-11T12:20:05.205+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:20:05.206+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:20:47.923+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:20:47.923+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:29:43.309+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:29:43.309+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:50:19.819+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:50:19.820+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:50:31.167+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:50:31.167+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:51:41.214+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T12:51:41.214+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %sstate状态只允许0或1"}
+{"level":"info","ts":"2020-04-11T12:54:13.158+0800","caller":"controller/applicationController.go:60","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T13:26:46.463+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T20:12:44.653+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"info","ts":"2020-04-11T20:23:49.388+0800","caller":"controller/applicationController.go:62","msg":"err.key: %s, err.message: %screated_by创建人不能为空"}
+{"level":"error","ts":"2020-04-11T21:18:05.361+0800","caller":"service/UserService.go:134","msg":"删除用户失败:不能删除admin账号"}
+{"level":"error","ts":"2020-04-11T21:19:26.097+0800","caller":"service/UserService.go:134","msg":"删除用户失败:不能删除admin账号"}
+{"level":"error","ts":"2020-04-11T21:21:57.456+0800","caller":"repository/UserRepository.go:128","msg":"record not found"}
+{"level":"error","ts":"2020-04-11T21:22:04.666+0800","caller":"repository/UserRepository.go:128","msg":"record not found"}
+{"level":"error","ts":"2020-04-11T21:22:36.934+0800","caller":"repository/UserRepository.go:128","msg":"record not found"}
+{"level":"info","ts":"2020-04-11T22:59:00.305+0800","caller":"controller/applicationController.go:86","msg":"err.key: %s, err.message: %sgitGit不能为空"}
+{"level":"info","ts":"2020-04-11T22:59:15.009+0800","caller":"controller/applicationController.go:86","msg":"err.key: %s, err.message: %sgitGit不能为空"}
+{"level":"info","ts":"2020-04-11T23:00:14.873+0800","caller":"controller/applicationController.go:86","msg":"err.key: %s, err.message: %sgitGit不能为空"}
+{"level":"error","ts":"2020-04-11T23:01:08.423+0800","caller":"repository/ArticleRepository.go:29","msg":"未找到相关文章%!(EXTRA *errors.errorString=record not found)"}

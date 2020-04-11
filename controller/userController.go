@@ -31,10 +31,10 @@ type User struct {
 func (a *User) GetUserInfo(c *gin.Context) {
 	roles := jwt.ExtractClaims(c)
 	userName := roles["userName"].(string)
-	avatar := a.Service.GetUserAvatar(userName)
+	UserId := a.Service.GetUserID(userName)
 	code := codes.SUCCESS
 	userRoles := a.Service.GetRoles(userName)
-	data := page.User{Roles: userRoles, Introduction: "", Avatar: *avatar, Name: userName}
+	data := page.User{Roles: userRoles, Introduction: "", UserId: UserId, UserName: userName}
 	RespData(c, http.StatusOK, code, &data)
 }
 

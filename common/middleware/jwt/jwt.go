@@ -73,11 +73,11 @@ func (j *JWT) GinJWTMiddlewareInit(jwtAuthorizator JwtAuthorizator) (authMiddlew
 			if err := c.ShouldBind(&loginVals); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
-			userID := loginVals.Username
+			username := loginVals.Username
 			password := loginVals.Password
-			if j.UserService.CheckUser(userID, password) {
+			if j.UserService.CheckUser(username, password) {
 				return &models.UserRole{
-					UserName: userID,
+					UserName: username,
 				}, nil
 			}
 

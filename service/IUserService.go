@@ -8,6 +8,8 @@ type IUserService interface {
 	CheckUser(username string, password string) bool
 	//GetUserAvatar 获取用户头像
 	GetUserAvatar(username string) *string
+	//GetUserID 获取用户ID
+	GetUserID(username string) uint
 	//GetRoles 获取用户角色
 	GetRoles(username string) *[]string
 	//GetUsers 获取用户信息

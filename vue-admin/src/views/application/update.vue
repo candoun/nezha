@@ -1,5 +1,5 @@
 <template>
-  <application-form :id=parseInt(this.$route.params.id) :readonly="false" :opType="'edit'" />
+  <application-form :id=parseInt(this.$route.params.id) :readonly="false" :opType="'update'" />
 </template>
 
 <script>

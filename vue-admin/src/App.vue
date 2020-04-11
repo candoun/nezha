@@ -15,9 +15,12 @@
   color: #2c3e50;
 }
 .foot {
-  	margin: 0px auto 30px auto;
-  	text-align: center;
-  	color: #505458;
+  height: 50px;
+  padding-top: 15px;
+  background: #ddd;
+  margin: 0px auto 30px auto;
+  text-align: center;
+  color: #505458;
 }
 </style>
 

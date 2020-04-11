@@ -7,8 +7,8 @@
       ref="dataForm"
       :size="size"
       label-position="right">
-      <el-form-item label="ID" prop="id" v-if="false">
-        <el-input v-model="dataForm.id" :disabled="true" auto-complete="off"></el-input>
+      <el-form-item label="ID" prop="ID" v-if="false">
+        <el-input v-model="dataForm.ID" :disabled="true" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="名称" prop="name">
         <el-input v-model="dataForm.name" :readonly="readonly" auto-complete="off"></el-input>
@@ -29,19 +29,19 @@
       <el-button :size="size">返回</el-button>
       </router-link>
     </div>
-    <div v-if="this.opType==='edit'">
-      <el-button :size="size" @click.native="resetForm">Reset</el-button>
-      <el-button :size="size" type="primary" v-show="!readonly" @click.native="submitForm" >保存</el-button>
+    <div v-if="this.opType==='update'">
+      <el-button :size="size" type="primary" @click.native="submitUpdateForm" >保存</el-button>
     </div>
     <div v-if="this.opType==='create'">
       <el-button :size="size" @click.native="resetForm">Cancel</el-button>
-      <el-button :size="size" type="primary" v-show="!readonly" @click.native="submitForm" >保存</el-button>
+      <el-button :size="size" type="primary" @click.native="submitCreateForm" >保存</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import { fetchApplication } from '@/api/application'
+import { mapGetters } from 'vuex'
+import { fetchApplication, createApplication, updateApplication } from '@/api/application'
 
 	export default {
 		name: 'ApplicationForm',
@@ -54,10 +54,6 @@ import { fetchApplication } from '@/api/application'
       	type: String,
       	default: ''
       },
-			title: {
-				type: String,
-				default: 'Title'
-			},
 			size: {
 				type: String,
 				default: 'mini'
@@ -70,17 +66,17 @@ import { fetchApplication } from '@/api/application'
 		data() {
 			return {
         dataForm: {
-          id: 0,
-          name: 'k8s-yaml',
+          ID: 0,
+          name: '应用名称',
           description: '描述',
-          tag: 'dev',
-          content: 'apiVersion...',
+          git: 'git',
+          jenkins: 'jenkins'
         },
         dataFormRules: {
           name: [
             {
               required: true,
-              message: '请输入yaml名称',
+              message: '请输入应用名称',
               trigger: 'blur',
             }
           ]
@@ -88,9 +84,14 @@ import { fetchApplication } from '@/api/application'
 
 			}
 		},
+    computed: {
+      ...mapGetters([
+        'userId',
+        'userName'
+      ])
+    },
     created() {
-      if (this.opType) {
-        console.log("11111")
+      if (this.opType === "detail" || this.opType === "update") {
         this.getDetail(this.id)
       }
     },
@@ -100,6 +101,69 @@ import { fetchApplication } from '@/api/application'
         fetchApplication(params).then(response => {
           this.dataForm = response.data
           this.listLoading = false
+        })
+      },
+      submitCreateForm() {
+        this.$refs.dataForm.validate(valid => {
+          if (valid) {
+            this.dataForm.state = 1
+            this.dataForm.user_id = this.userId
+            this.dataForm.created_by = this.userName
+            createApplication(this.dataForm).then(response => {
+              this.loading = true
+              if (response.code !== 200) {
+                this.$notify({
+                  title: '错误',
+                  message: '可能存在相同应用，请仔细核查！',
+                  type: 'error',
+                  duration: 2000
+                })
+                this.loading = false
+                return
+              }
+              this.$notify({
+                title: '成功',
+                message: '新建应用成功',
+                type: 'success',
+                duration: 2000
+              })
+              this.$router.push({ path: this.redirect || '/application/list' })
+              this.loading = false
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
+        })
+      },
+      submitUpdateForm() {
+        this.$refs.dataForm.validate(valid => {
+          if (valid) {
+            updateApplication(this.dataForm).then(response => {
+              this.loading = true
+              if (response.code !== 200) {
+                this.$notify({
+                  title: '错误',
+                  message: '更新失败，请仔细核查！',
+                  type: 'error',
+                  duration: 2000
+                })
+                this.loading = false
+                return
+              }
+              this.$notify({
+                title: '成功',
+                message: '更新应用成功',
+                type: 'success',
+                duration: 2000
+              })
+              this.$router.push({ path: this.redirect || '/application/list' })
+              this.loading = false
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
         })
       },
       resetForm: function() {

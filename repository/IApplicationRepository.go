@@ -8,6 +8,12 @@ type IApplicationRepository interface {
 	GetApplication(where interface{}) *models.Application
 	//AddApplication 新增Application
 	AddApplication(application *models.Application) bool
-	//GetApplications 获取文章
+	//UpdateApplication 更新Application
+	UpdateApplication(application *models.Application) bool
+	//GetApplications 获取Application
 	GetApplications(PageNum, PageSize uint, total *uint64, where interface{}) *[]models.Application
+	//ExistApplicationByName 是否存在已有应用
+	ExistApplicationByName(where interface{}) bool
+	//DeleteApplication 删除已有应用
+	DeleteApplication(id uint) bool
 }

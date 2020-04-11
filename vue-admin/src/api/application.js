@@ -8,9 +8,9 @@ export function fetchList(query) {
   })
 }
 
-export function fetchApplication(id) {
+export function fetchApplication(data) {
   return request({
-    url: '/application/detail/' + id,
+    url: '/application/detail/' + data,
     method: 'get'
   })
 }
@@ -18,7 +18,7 @@ export function fetchApplication(id) {
 
 export function createApplication(data) {
   return request({
-    url: '/application',
+    url: '/application/create',
     method: 'post',
     data
   })
@@ -27,7 +27,15 @@ export function createApplication(data) {
 export function updateApplication(data) {
   return request({
     url: '/application/update',
-    method: 'post',
+    method: 'put',
+    data
+  })
+}
+
+export function deleteApplication(data) {
+  return request({
+    url: '/application/delete/' + data,
+    method: 'delete',
     data
   })
 }

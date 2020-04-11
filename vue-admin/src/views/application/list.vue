@@ -58,7 +58,7 @@
             :isLabel="false"
             type="info" />
           </router-link>
-          <router-link :to="'/application/edit/'+scope.row.ID">
+          <router-link :to="'/application/update/'+scope.row.ID">
             <nz-button
               icon="el-icon-edit"
               :plain="true"
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/application'
+import { fetchList, deleteApplication } from '@/api/application'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 import NzButton from '@/components/NzButton'
@@ -140,25 +140,24 @@ export default {
       this.$confirm('确定删除'+ row.name +'吗？', '提示', {
         type:'warning'
       }).then(() => {
-        let params = []
-        let idArray = (ids+'').split(',')
-        for (var i=0; i<idArray.length; i++) {
-          params.push({'id': idArray[i]})
-        }
-        this.loading = true
-        let callback = (res) => {
-          if (res.code == 200) {
-            this.$message({message: '删除成功', type: 'success'})
-            this.list(this.pageRequest)
+        deleteApplication(row.ID).then(response => {
+          this.getList()
+          if (response.msg === 'fail') {
+            this.$notify({
+              title: 'Fail',
+              message: response.detail,
+              type: 'error',
+              duration: 2000
+            })
           } else {
-            this.$message({message: '操作失败, ' + res.msg, type: 'error'})
+            this.$notify({
+              title: 'Success',
+              message: '删除用户成功!',
+              type: 'success',
+              duration: 2000
+            })
           }
-          this.loading = false
-        }
-        this.$api.yaml.batchDelete(params)
-        .then(
-          callback
-        )
+        })
       }).catch(() => {})
     },
   }

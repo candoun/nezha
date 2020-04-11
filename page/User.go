@@ -2,10 +2,10 @@ package page
 
 //User 用户登录信息结构体
 type User struct {
+	UserId       uint
 	Roles        *[]string
 	Introduction string
-	Avatar       string
-	Name         string
+	UserName     string
 }
 
 //Users 用户管理结构体

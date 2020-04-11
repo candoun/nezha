@@ -19,10 +19,24 @@ func (a *ApplicationService) GetApplication(id uint) *models.Application {
 
 //AddApplication 新增Application
 func (a *ApplicationService) AddApplication(application *models.Application) bool {
-	return a.Repository.AddApplication(application)
+	if a.Repository.ExistApplicationByName(application) {
+		return false
+	} else {
+		return a.Repository.AddApplication(application)
+	}
 }
 
-//GetArticles 获取文章信息
+//UpdateUser 更新用户
+func (a *ApplicationService) UpdateApplication(application *models.Application) bool {
+	return a.Repository.UpdateApplication(application)
+}
+
+//GetArticles 获取Application信息
 func (a *ApplicationService) GetApplications(PageNum, PageSize uint, total *uint64, where interface{}) *[]models.Application {
 	return a.Repository.GetApplications(PageNum, PageSize, total, where)
+}
+
+//DeleteApplication 删除用户
+func (a *ApplicationService) DeleteApplication(id uint) bool {
+	return a.Repository.DeleteApplication(id)
 }

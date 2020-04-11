@@ -78,9 +78,9 @@ func Configure(r *gin.Engine) {
 	{
 		applicationAPI.GET("/list", application.GetApplications)
 		applicationAPI.GET("/detail/:id", application.GetApplication)
-		applicationAPI.POST("/", application.AddApplication)
-		//apiv1.PUT("/application/:id", application.EditApplication)
-		//apiv1.DELETE("/application/:id", application.DeleteApplication)
+		applicationAPI.POST("/create", application.AddApplication)
+		applicationAPI.PUT("/update", application.UpdateApplication)
+		applicationAPI.DELETE("/delete/:id", application.DeleteApplication)
 
 	}
 

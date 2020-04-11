@@ -82,9 +82,9 @@ export const constantRoutes = [
         meta: { title: '新建Application', icon: 'create' }
       },
       {
-        path: 'edit/:id',
+        path: 'update/:id',
         hidden: true,
-        component: () => import('@/views/application/edit'),
+        component: () => import('@/views/application/update'),
         name: 'EditApplicaiton',
         meta: { title: '编辑Application', icon: 'edit' }
       },
