@@ -6,10 +6,12 @@
           <el-input v-model="Filters.name" placeholder="关键字"></el-input>
         </el-form-item>
         <el-form-item>
-          <btn-search-add icon="fa fa-search" :label="'搜索'"  type="primary" @click="getList"/>
+          <nz-button icon="fa fa-search" :label="'搜索'"  type="primary" @click="getList"/>
         </el-form-item>
         <el-form-item>
-          <btn-search-add icon="fa fa-plus" :label="'新增'"  type="primary" @click="handleAdd"/>
+          <router-link :to="'/application/create/'">
+            <nz-button icon="fa fa-plus" :label="'新增'"  type="primary"/>
+          </router-link>
         </el-form-item>
       </el-form>
     </div>
@@ -47,23 +49,25 @@
       </el-table-column>
       <el-table-column  width="300px" align="center" >
         <template slot-scope="scope">
-          <btn-search-add
+          <router-link :to="'/application/detail/'+scope.row.ID">
+          <nz-button
             icon="el-icon-info"
             :size="size"
             :plain="true"
             :circle="true"
             :isLabel="false"
-            type="info"
-            @click="handleView(scope.row)" />
-          <btn-search-add
-            icon="el-icon-edit"
-            :plain="true"
-            :circle="true"
-            :isLabel="false"
-            :size="size"
-            type="info"
-            @click="handleEdit(scope.row)" />
-          <btn-search-add
+            type="info" />
+          </router-link>
+          <router-link :to="'/application/edit/'+scope.row.ID">
+            <nz-button
+              icon="el-icon-edit"
+              :plain="true"
+              :circle="true"
+              :isLabel="false"
+              :size="size"
+              type="info" />
+          </router-link>
+          <nz-button
             icon="el-icon-delete"
             :plain="true"
             :circle="true"
@@ -83,9 +87,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <application-form
-      :dataForm="dataForm"
-      :dialogVisible="dialogVisible"/>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
@@ -94,14 +95,14 @@
 import { fetchList } from '@/api/application'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
-import BtnSearchAdd from '@/components/BtnSearchAdd'
-import ApplicationForm from './components/Form'
+import NzButton from '@/components/NzButton'
+import ApplicationForm from './components/form'
 
 export default {
   name: 'ApplicationList',
   components: {
     Pagination,
-    BtnSearchAdd,
+    NzButton,
     ApplicationForm
   },
 
@@ -120,14 +121,6 @@ export default {
       listQuery: {
         page: 1,
         limit: 10
-      },
-
-      dataForm: {
-        id: 0,
-        name: 'k8s-yaml',
-        description: '描述',
-        tag: 'dev',
-        content: 'apiVersion...',
       }
     }
   },
@@ -135,14 +128,6 @@ export default {
     this.getList()
   },
   methods: {
-    // 修改 table cell边框的背景色
-    tableCellStyle () {
-      return 'border-color: #868686;'
-    },
-    // 修改 table header cell的背景色
-    tableHeaderCellStyle () {
-      return 'border-color: #868686; color: #606266;'
-    },
     getList(params) {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
@@ -151,23 +136,8 @@ export default {
         this.listLoading = false
       })
     },
-    // 显示新增界面
-    handleAdd: function () {
-      this.dialogVisible = true
-      this.title = '新建Application'
-      this.readonly = false
-    },
-    handleEdit: function(params) {
-      console.log("edit")
-    },
-    handleView: function(params) {
-      console.log("view")
-    },
     handleDelete: function(row) {
-      this.delete(row.id, row.name)
-    },
-    delete: function(id, name) {
-      this.$confirm('确定删除'+ name +'吗？', '提示', {
+      this.$confirm('确定删除'+ row.name +'吗？', '提示', {
         type:'warning'
       }).then(() => {
         let params = []

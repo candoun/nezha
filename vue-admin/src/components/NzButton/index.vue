@@ -7,7 +7,7 @@
 
 <script>
 	export default {
-		name: 'BtnSearchAdd',
+		name: 'NzButton',
 		props: {
       isLabel: {
       	type: Boolean,

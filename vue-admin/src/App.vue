@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <router-view />
+    <div class="foot">
+      哪吒NeZha@2020
+    </div>
   </div>
 </template>
 <style lang="scss">
@@ -11,7 +14,11 @@
   text-align: center;
   color: #2c3e50;
 }
-
+.foot {
+  	margin: 0px auto 30px auto;
+  	text-align: center;
+  	color: #505458;
+}
 </style>
 
 <script>

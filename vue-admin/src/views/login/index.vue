@@ -98,9 +98,6 @@
         </el-form>
       </el-tab-pane>
     </el-tabs>
-    <div class="tips">
-      哪吒NeZha@2020
-    </div>
   </div>
 </template>
 
@@ -234,11 +231,6 @@ $bg:#283443;
 		text-align: center;
 		color: #505458;
 	}
-  .tips {
-  	margin: 0px auto 30px auto;
-  	text-align: center;
-  	color: #505458;
-  }
   .show-pwd {
     position: absolute;
     right: 10px;
