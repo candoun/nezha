@@ -17,6 +17,17 @@
         <el-input v-model="dataForm.description" :readonly="readonly" auto-complete="off"></el-input>
       </el-form-item>
 
+
+      <el-form-item label="所属项目" prop="project_id">
+        <el-select class="item-choose" v-model="dataForm.project_id" size="small">
+            <el-option
+                v-for="(item,index) in listProject"
+                :key="index"
+                :label="item.name"
+                :value="item.ID" />
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="Git" prop="git">
         <el-input v-model="dataForm.git" :readonly="readonly" auto-complete="off"></el-input>
       </el-form-item>
@@ -61,6 +72,10 @@ import { fetchApplication, createApplication, updateApplication } from '@/api/ap
       readonly: {
       	type: Boolean,
       	default: false
+      },
+      listProject: {
+        type: Array,
+        default: null
       }
 		},
 		data() {
@@ -69,6 +84,7 @@ import { fetchApplication, createApplication, updateApplication } from '@/api/ap
           ID: 0,
           name: '应用名称',
           description: '描述',
+          project_id: '',
           git: 'git',
           jenkins: 'jenkins'
         },
@@ -180,35 +196,5 @@ import { fetchApplication, createApplication, updateApplication } from '@/api/ap
     padding-top: 20px;
     position: relative;
 
-    .createPost-main-container {
-      padding: 40px 45px 20px 50px;
-
-      .postInfo-container {
-        position: relative;
-        @include clearfix;
-        margin-bottom: 10px;
-
-        .postInfo-container-item {
-          float: left;
-        }
-      }
-    }
-
-    .word-counter {
-      width: 40px;
-      position: absolute;
-      right: 10px;
-      top: 0px;
-    }
-  }
-
-  .article-textarea /deep/ {
-    textarea {
-      padding-right: 40px;
-      resize: none;
-      border: none;
-      border-radius: 0px;
-      border-bottom: 1px solid #bfcbd9;
-    }
   }
 </style>

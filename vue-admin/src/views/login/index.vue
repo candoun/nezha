@@ -123,8 +123,8 @@ export default {
       },
       registerForm: {
         username: 'aguncn',
-        password: '12345678',
-        password1: '12345678',
+        password: '111111',
+        password1: '111111',
       },
       loginRules: {
         password: [{ required: true, trigger: 'blur', validator: validatePwd }]

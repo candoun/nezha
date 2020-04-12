@@ -8,5 +8,6 @@ import ProjectForm from './components/form'
 export default {
   name: 'CreateProject',
   components: { ProjectForm }
+
 }
 </script>

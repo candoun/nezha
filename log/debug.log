@@ -160,3 +160,12 @@
 {"level":"error","ts":"2020-04-12T13:15:38.803+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-12T13:16:43.665+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-12T13:16:43.668+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:16:08.405+0800","caller":"repository/UserRepository.go:26","msg":"密码错误%!(EXTRA *errors.errorString=crypto/bcrypt: hashedPassword is not the hash of the given password)"}
+{"level":"error","ts":"2020-04-12T19:16:11.345+0800","caller":"repository/UserRepository.go:26","msg":"密码错误%!(EXTRA *errors.errorString=crypto/bcrypt: hashedPassword is not the hash of the given password)"}
+{"level":"error","ts":"2020-04-12T19:17:08.805+0800","caller":"repository/UserRepository.go:26","msg":"密码错误%!(EXTRA *errors.errorString=crypto/bcrypt: hashedPassword is not the hash of the given password)"}
+{"level":"error","ts":"2020-04-12T19:23:05.686+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:23:05.693+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:23:14.858+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:23:19.460+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:23:23.555+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T19:23:42.547+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}

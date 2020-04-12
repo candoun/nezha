@@ -20,11 +20,11 @@ func CreateTableData(db *gorm.DB) error {
 
 func initData() {
 	pw, _ := bcrypt.GenerateFromPassword([]byte("111111"), bcrypt.DefaultCost)
-	mockData["adminUser"] = fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, created_at) VALUES "+
-		" (1, 'admin', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',1, '2020-04-06 13:01:09');",
+	mockData["adminUser"] = fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, state, created_at) VALUES "+
+		" (1, 'admin', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',1, 1, '2020-04-06 13:01:09');",
 		pw)
-	mockData["testUser"] = fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, created_at) VALUES "+
-		" (2, 'test', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',2, '2020-04-06 13:01:09');",
+	mockData["devUser"] = fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, state, created_at) VALUES "+
+		" (2, 'dev', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',2, 1, '2020-04-06 13:01:09');",
 		pw)
 
 	mockData["tag1"] = "INSERT INTO nezha_tag(id, name, created_at, created_by, updated_at, updated_by, deleted_at, state) VALUES" +
@@ -35,8 +35,8 @@ func initData() {
 		" (3, '3', '2019-08-18 18:56:01', 'test', NULL, '', 0, 1);"
 
 	mockData["role1"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (1, 1, 'admin', 'admin')"
-	mockData["role2"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (2, 1, 'admin', 'test')"
-	mockData["role3"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (3, 2, 'test', 'test')"
+	mockData["role2"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (2, 1, 'admin', 'dev')"
+	mockData["role3"] = "INSERT INTO nezha_role(id, user_id, user_name, value) VALUES (3, 2, 'dev', 'dev')"
 
 	mockData["project1"] = "INSERT INTO nezha_project(id, user_id, name, cn_name, description) VALUES (1, 1, 'AI-PROJECT', '算法项目', '用于算法')"
 	mockData["project2"] = "INSERT INTO nezha_project(id, user_id, name, cn_name, description) VALUES (2, 2, 'BI-PROJECT', '商务智能项目', '用于BI智能')"
@@ -54,9 +54,9 @@ func initData() {
 		mockData[key] = value
 	}
 
-	for i := 1; i < 31; i++ {
+	for i := 3; i < 31; i++ {
 		key := "user- " + string(i)
-		value := fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, created_at) VALUES (%d, 'user-%s', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',1, '2020-04-06 13:01:09');", i, strconv.Itoa(i), pw)
+		value := fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, state, created_at) VALUES (%d, 'user-%s', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG', 2, 1, '2020-04-06 13:01:09');", i, strconv.Itoa(i), pw)
 		mockData[key] = value
 	}
 

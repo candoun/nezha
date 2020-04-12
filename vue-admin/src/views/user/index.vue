@@ -108,7 +108,7 @@
         <el-form-item label="权限" prop="user_type">
           <el-select v-model="temp.user_type" placeholder="请选择权限">
             <el-option label="管理员" :value="1" />
-            <el-option label="测试用户" :value="2" />
+            <el-option label="研发" :value="2" />
           </el-select>
         </el-form-item>
       </el-form>

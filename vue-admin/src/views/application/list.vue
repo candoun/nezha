@@ -36,7 +36,9 @@
 
       <el-table-column width="120px" align="center" label="所属项目">
         <template slot-scope="scope">
-          <span>{{ scope.row.project_id }}</span>
+          <el-tooltip class="item" effect="dark" :content="listProject[scope.row.project_id]['cn_name']" placement="top">
+            <span>{{ listProject[scope.row.project_id]['name'] }}</span>
+          </el-tooltip>
         </template>
       </el-table-column>
 
@@ -97,6 +99,7 @@
 
 <script>
 import { fetchList, deleteApplication } from '@/api/application'
+import { fetchList as fetchProjectList } from '@/api/project'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 import NzButton from '@/components/NzButton'
@@ -119,12 +122,18 @@ export default {
       title: '',
       dialogVisible: false,
       list: null,
+      listProject: null,
       total: 0,
       listLoading: true,
       readonly: false,
       listQuery: {
         page: 1,
         limit: 10,
+        name: undefined
+      },
+      listProjectQuery: {
+        page: 1,
+        limit: 100,
         name: undefined
       }
     }
@@ -135,10 +144,15 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.list
-        this.total = response.data.total
+      fetchProjectList(this.listProjectQuery).then(response => {
+        this.listProject = response.data.list
         this.listLoading = false
+      }).then(() => {
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.list
+          this.total = response.data.total
+          this.listLoading = false
+        })
       })
     },
     handleFilter() {
