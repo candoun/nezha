@@ -171,6 +171,39 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/project',
+    component: Layout,
+    redirect: '/project/list',
+    name: '项目管理',
+    meta: {
+      title: '项目管理',
+      icon: 'form',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'Project',
+        component: () => import('@/views/project/list'),
+        meta: { title: '项目列表', icon: 'table' }
+      },
+      {
+        path: 'create',
+        hidden: true,
+        component: () => import('@/views/project/create'),
+        name: 'CreateProject',
+        meta: { title: '新建Project', icon: 'create' }
+      },
+      {
+        path: 'update/:id',
+        hidden: true,
+        component: () => import('@/views/project/update'),
+        name: 'EditProject',
+        meta: { title: '编辑Project', icon: 'edit' }
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

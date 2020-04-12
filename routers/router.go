@@ -14,8 +14,10 @@ import (
 	"github.com/aguncn/nezha/controller"
 	"github.com/aguncn/nezha/repository"
 	appRep "github.com/aguncn/nezha/repository/application"
+	proRep "github.com/aguncn/nezha/repository/project"
 	"github.com/aguncn/nezha/service"
 	appSvc "github.com/aguncn/nezha/service/application"
+	proSvc "github.com/aguncn/nezha/service/project"
 )
 
 //InitRouter 初始化Router
@@ -38,6 +40,7 @@ func Configure(r *gin.Engine) {
 	//inject declare
 	var article controller.Article
 	var application controller.Application
+	var project controller.Project
 	db := datasource.Db{}
 	zap := logger.Logger{}
 	//Injection
@@ -49,6 +52,9 @@ func Configure(r *gin.Engine) {
 		&inject.Object{Value: &application},
 		&inject.Object{Value: &appRep.ApplicationRepository{}},
 		&inject.Object{Value: &appSvc.ApplicationService{}},
+		&inject.Object{Value: &project},
+		&inject.Object{Value: &proRep.ProjectRepository{}},
+		&inject.Object{Value: &proSvc.ProjectService{}},
 		&inject.Object{Value: &article},
 		&inject.Object{Value: &repository.ArticleRepository{}},
 		&inject.Object{Value: &service.ArticleService{}},
@@ -83,6 +89,17 @@ func Configure(r *gin.Engine) {
 		applicationAPI.POST("/create", application.AddApplication)
 		applicationAPI.PUT("/update", application.UpdateApplication)
 		applicationAPI.DELETE("/delete/:id", application.DeleteApplication)
+
+	}
+
+	projectAPI := r.Group("/project")
+	projectAPI.Use(authMiddleware.MiddlewareFunc())
+	{
+		projectAPI.GET("/list", project.GetProjects)
+		projectAPI.GET("/detail/:id", project.GetProject)
+		projectAPI.POST("/create", project.AddProject)
+		projectAPI.PUT("/update", project.UpdateProject)
+		projectAPI.DELETE("/delete/:id", project.DeleteProject)
 
 	}
 
