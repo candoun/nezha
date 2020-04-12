@@ -13,7 +13,9 @@ import (
 	"github.com/aguncn/nezha/common/setting"
 	"github.com/aguncn/nezha/controller"
 	"github.com/aguncn/nezha/repository"
+	appRep "github.com/aguncn/nezha/repository/application"
 	"github.com/aguncn/nezha/service"
+	appSvc "github.com/aguncn/nezha/service/application"
 )
 
 //InitRouter 初始化Router
@@ -45,8 +47,8 @@ func Configure(r *gin.Engine) {
 		&inject.Object{Value: &zap},
 		&inject.Object{Value: &myjwt},
 		&inject.Object{Value: &application},
-		&inject.Object{Value: &repository.ApplicationRepository{}},
-		&inject.Object{Value: &service.ApplicationService{}},
+		&inject.Object{Value: &appRep.ApplicationRepository{}},
+		&inject.Object{Value: &appSvc.ApplicationService{}},
 		&inject.Object{Value: &article},
 		&inject.Object{Value: &repository.ArticleRepository{}},
 		&inject.Object{Value: &service.ArticleService{}},

@@ -10,13 +10,13 @@ import (
 	"github.com/aguncn/nezha/common/codes"
 	"github.com/aguncn/nezha/common/logger"
 	"github.com/aguncn/nezha/models"
-	"github.com/aguncn/nezha/service"
+	appSvc "github.com/aguncn/nezha/service/application"
 )
 
 // Application 注入IApplicationService
 type Application struct {
-	Log     logger.ILogger              `inject:""`
-	Service service.IApplicationService `inject:""`
+	Log     logger.ILogger             `inject:""`
+	Service appSvc.IApplicationService `inject:""`
 }
 
 //GetApplication 获取单个Application

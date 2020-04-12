@@ -100,3 +100,7 @@
 {"level":"info","ts":"2020-04-12T11:28:56.439+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
 {"level":"error","ts":"2020-04-12T11:36:10.700+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-12T11:36:10.708+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T12:02:54.157+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T12:02:54.160+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T12:08:25.381+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T12:08:25.396+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}

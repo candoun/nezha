@@ -1,4 +1,4 @@
-package repository
+package application
 
 import "github.com/aguncn/nezha/models"
 

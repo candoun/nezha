@@ -1,15 +1,16 @@
-package repository
+package application
 
 import (
 	"github.com/aguncn/nezha/common/logger"
 	"github.com/aguncn/nezha/models"
+	baseRep "github.com/aguncn/nezha/repository"
 	"github.com/jinzhu/gorm"
 )
 
 //ApplicationRepository 注入IDb
 type ApplicationRepository struct {
-	Log  logger.ILogger `inject:""`
-	Base BaseRepository `inject:"inline"`
+	Log  logger.ILogger         `inject:""`
+	Base baseRep.BaseRepository `inject:"inline"`
 }
 
 //GetApplication 根据id获取Application

@@ -1,15 +1,15 @@
-package service
+package application
 
 import (
 	"github.com/aguncn/nezha/models"
 	//pageModel "github.com/aguncn/nezha/page"
-	"github.com/aguncn/nezha/repository"
+	appRep "github.com/aguncn/nezha/repository/application"
 	"github.com/jinzhu/gorm"
 )
 
 // ArticleService 注入IArticleRepo
 type ApplicationService struct {
-	Repository repository.IApplicationRepository `inject:""`
+	Repository appRep.IApplicationRepository `inject:""`
 }
 
 //GetApplication 根据id获取Application
