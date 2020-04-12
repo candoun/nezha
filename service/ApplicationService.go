@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/aguncn/nezha/models"
+	//pageModel "github.com/aguncn/nezha/page"
 	"github.com/aguncn/nezha/repository"
 	"github.com/jinzhu/gorm"
 )
@@ -28,12 +29,35 @@ func (a *ApplicationService) AddApplication(application *models.Application) boo
 
 //UpdateUser 更新用户
 func (a *ApplicationService) UpdateApplication(application *models.Application) bool {
-	return a.Repository.UpdateApplication(application)
+	if a.Repository.ExistApplicationByName(application) {
+		return false
+	} else {
+		return a.Repository.UpdateApplication(application)
+	}
 }
 
 //GetArticles 获取Application信息
-func (a *ApplicationService) GetApplications(PageNum, PageSize uint, total *uint64, where interface{}) *[]models.Application {
-	return a.Repository.GetApplications(PageNum, PageSize, total, where)
+func (a *ApplicationService) GetApplications(page, pagesize uint, maps interface{}) interface{} {
+	res := make(map[string]interface{}, 2)
+	var total uint64
+	applications := a.Repository.GetApplications(page, pagesize, &total, maps)
+	/*
+		可用于定制输出
+		var pageApplications []pageModel.Application
+		var pageApplication pageModel.Application
+		for _, application := range *applications {
+			pageApplication.ID = application.ID
+			pageApplication.Name = application.Name
+			pageApplication.Git = application.Git
+			pageApplication.Jenkins = application.Jenkins
+			pageApplication.State = application.State
+			pageApplication.CreatedAt = application.CreatedAt.Format("2006-01-02 15:04:05")
+			pageApplications = append(pageApplications, pageApplication)
+		}
+	*/
+	res["list"] = &applications
+	res["total"] = total
+	return &res
 }
 
 //DeleteApplication 删除用户

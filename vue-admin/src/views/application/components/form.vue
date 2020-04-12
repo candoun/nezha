@@ -144,7 +144,7 @@ import { fetchApplication, createApplication, updateApplication } from '@/api/ap
               if (response.code !== 200) {
                 this.$notify({
                   title: '错误',
-                  message: '更新失败，请仔细核查！',
+                  message: '更新失败，可能存在相同应用,请仔细核查！',
                   type: 'error',
                   duration: 2000
                 })
@@ -177,6 +177,7 @@ import { fetchApplication, createApplication, updateApplication } from '@/api/ap
 
 <style>
   .application-container {
+    padding-top: 20px;
     position: relative;
 
     .createPost-main-container {

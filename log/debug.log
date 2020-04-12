@@ -96,3 +96,7 @@
 {"level":"info","ts":"2020-04-11T22:59:15.009+0800","caller":"controller/applicationController.go:86","msg":"err.key: %s, err.message: %sgitGit不能为空"}
 {"level":"info","ts":"2020-04-11T23:00:14.873+0800","caller":"controller/applicationController.go:86","msg":"err.key: %s, err.message: %sgitGit不能为空"}
 {"level":"error","ts":"2020-04-11T23:01:08.423+0800","caller":"repository/ArticleRepository.go:29","msg":"未找到相关文章%!(EXTRA *errors.errorString=record not found)"}
+{"level":"info","ts":"2020-04-12T11:26:31.991+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"info","ts":"2020-04-12T11:28:56.439+0800","caller":"controller/applicationController.go:34","msg":"err.key: %s, err.message: %sidID必须大于0"}
+{"level":"error","ts":"2020-04-12T11:36:10.700+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-12T11:36:10.708+0800","caller":"repository/UserRepository.go:45","msg":"获取用户ID失败%!(EXTRA *errors.errorString=record not found)"}

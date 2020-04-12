@@ -42,15 +42,21 @@ func initData() {
 	mockData["project2"] = "INSERT INTO nezha_project(id, user_id, name, cn_name, description) VALUES (2, 2, 'BI-PROJECT', '商务智能项目', '用于BI智能')"
 	mockData["project3"] = "INSERT INTO nezha_project(id, user_id, name, cn_name, description) VALUES (3, 1, 'CI-PROJECT', '持续集成项目', '用于JKINS')"
 
-	for i := 1; i < 3; i++ {
+	for i := 1; i < 31; i++ {
 		key := "article " + string(i)
 		value := fmt.Sprintf("INSERT INTO nezha_article(id, tag_id, title,  content, cover_image_url, created_at, created_by, updated_at, state) VALUES (%d, 1, '%s',  'test1-content', '', '2019-08-19 21:00:39', 'test-created', '2019-08-19 21:00:39', 0);", i, "title-"+strconv.Itoa(i))
 		mockData[key] = value
 	}
 
-	for i := 1; i < 3; i++ {
+	for i := 1; i < 31; i++ {
 		key := "application " + string(i)
 		value := fmt.Sprintf("INSERT INTO nezha_application(id, name, cn_name,  description, git, jenkins, project_id, user_id, state) VALUES (%d,  'application-%s' , 'app-cn-name-%s',  'description', 'http://git', 'http://jenkins', 1, 1, 0);", i, strconv.Itoa(i), strconv.Itoa(i))
+		mockData[key] = value
+	}
+
+	for i := 1; i < 31; i++ {
+		key := "user- " + string(i)
+		value := fmt.Sprintf("INSERT INTO nezha_user(id, username, password, avatar,user_type, created_at) VALUES (%d, 'user-%s', '%s', 'https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG',1, '2020-04-06 13:01:09');", i, strconv.Itoa(i), pw)
 		mockData[key] = value
 	}
 

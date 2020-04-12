@@ -1,12 +1,16 @@
 <template>
   <div class="app-container">
     <div class="menu-header">
-      <el-form :inline="true" :model="Filters" :size="size">
+      <el-form :inline="true" :size="size">
         <el-form-item>
-          <el-input v-model="Filters.name" placeholder="关键字"></el-input>
+          <el-input
+            v-model="listQuery.name"
+            style="width: 300px;"
+            placeholder="关键字"
+            @keyup.enter.native="handleFilter" />
         </el-form-item>
         <el-form-item>
-          <nz-button icon="fa fa-search" :label="'搜索'"  type="primary" @click="getList"/>
+          <nz-button icon="el-icon-search" :label="'搜索'"  type="primary" @click="handleFilter"/>
         </el-form-item>
         <el-form-item>
           <router-link :to="'/application/create/'">
@@ -120,7 +124,8 @@ export default {
       readonly: false,
       listQuery: {
         page: 1,
-        limit: 10
+        limit: 10,
+        name: undefined
       }
     }
   },
@@ -128,13 +133,17 @@ export default {
     this.getList()
   },
   methods: {
-    getList(params) {
+    getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
         this.list = response.data.list
         this.total = response.data.total
         this.listLoading = false
       })
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getList()
     },
     handleDelete: function(row) {
       this.$confirm('确定删除'+ row.name +'吗？', '提示', {

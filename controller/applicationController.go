@@ -92,14 +92,15 @@ func (a *Application) UpdateApplication(c *gin.Context) {
 
 //GetApplications 获取Applications信息
 func (a *Application) GetApplications(c *gin.Context) {
-	res := make(map[string]interface{}, 2)
-	var total uint64
+	var maps string
 	code := codes.SUCCESS
+	name := c.Query("name")
+	if name != "" {
+		maps = "name LIKE '%" + name + "%'"
+	}
 	page, pagesize := GetPage(c)
-	applications := a.Service.GetApplications(page, pagesize, &total, "")
-	res["list"] = &applications
-	res["total"] = total
-	RespData(c, http.StatusOK, code, &res)
+	data := a.Service.GetApplications(page, pagesize, maps)
+	RespData(c, http.StatusOK, code, data)
 }
 
 //DeleteApplication 删除用户
