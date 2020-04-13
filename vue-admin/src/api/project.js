@@ -2,39 +2,39 @@ import request from '@/utils/request'
 
 export function fetchList(query) {
   return request({
-    url: '/application/list',
+    url: '/project/list',
     method: 'get',
     params: query
   })
 }
 
-export function fetchApplication(data) {
+export function fetchProject(data) {
   return request({
-    url: '/application/detail/' + data,
+    url: '/project/detail/' + data,
     method: 'get'
   })
 }
 
 
-export function createApplication(data) {
+export function createProject(data) {
   return request({
-    url: '/application/create',
+    url: '/project/create',
     method: 'post',
     data
   })
 }
 
-export function updateApplication(data) {
+export function updateProject(data) {
   return request({
-    url: '/application/update',
+    url: '/project/update',
     method: 'put',
     data
   })
 }
 
-export function deleteApplication(data) {
+export function deleteProject(data) {
   return request({
-    url: '/application/delete/' + data,
+    url: '/project/delete/' + data,
     method: 'delete',
     data
   })

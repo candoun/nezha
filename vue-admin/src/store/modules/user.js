@@ -3,22 +3,22 @@ import { getToken, setToken, removeToken, getTokenExpire, setTokenExpire, remove
 import { resetRouter } from '@/router'
 
 const state = {
+  userId: '',
   token: getToken(),
-  name: '',
-  avatar: '',
+  userName: '',
   roles: [],
   tokenExpire: getTokenExpire()
 }
 
 const mutations = {
+  SET_USERID: (state, userId) => {
+    state.userId = userId
+  },
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_USERNAME: (state, userName) => {
+    state.userName = userName
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -78,19 +78,18 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const data = response.data
+
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        const { Name, Avatar, Roles } = data
-
+        const { UserId, UserName, Roles } = data
         // roles must be a non-empty array
         if (!Roles || Roles.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
-
+        commit('SET_USERID', UserId)
         commit('SET_ROLES', Roles)
-        commit('SET_NAME', Name)
-        commit('SET_AVATAR', Avatar)
+        commit('SET_USERNAME', UserName)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -105,8 +104,8 @@ const actions = {
         commit('SET_TOKEN', '')
         commit('SET_TOKENEXPIRE', '')
         commit('SET_ROLES', '')
-        commit('SET_NAME', '')
-        commit('SET_AVATAR', [])
+        commit('SET_USERNAME', '')
+        commit('SET_USERID', '')
         removeToken()
         removeTokenExpire()
         resetRouter()

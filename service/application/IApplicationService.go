@@ -1,4 +1,4 @@
-package service
+package application
 
 import (
 	"github.com/aguncn/nezha/models"
@@ -11,6 +11,10 @@ type IApplicationService interface {
 
 	//AddApplication 新增Application
 	AddApplication(application *models.Application) bool
+	//UpdateApplication 更新Application
+	UpdateApplication(application *models.Application) bool
 	//GetApplications 获取文章信息
-	GetApplications(PageNum, PageSize uint, total *uint64, where interface{}) *[]models.Application
+	GetApplications(page, pagesize uint, maps interface{}) interface{}
+	//DeleteApplication 删除Application
+	DeleteApplication(id uint) bool
 }

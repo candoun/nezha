@@ -62,17 +62,38 @@ export const constantRoutes = [
   },
 
   {
-    path: '/deploy',
+    path: '/application',
     component: Layout,
-    redirect: '/deploy/application',
+    redirect: '/application/list',
     name: '应用部署',
     meta: { title: '应用部署', icon: 'example' },
     children: [
       {
-        path: 'application',
+        path: 'list',
         name: 'Application',
-        component: () => import('@/views/deploy/application/index'),
+        component: () => import('@/views/application/list'),
         meta: { title: '应用列表', icon: 'table' }
+      },
+      {
+        path: 'create',
+        hidden: true,
+        component: () => import('@/views/application/create'),
+        name: 'CreateApplicaiton',
+        meta: { title: '新建Application', icon: 'create' }
+      },
+      {
+        path: 'update/:id',
+        hidden: true,
+        component: () => import('@/views/application/update'),
+        name: 'EditApplicaiton',
+        meta: { title: '编辑Application', icon: 'edit' }
+      },
+      {
+        path: 'detail/:id',
+        hidden: true,
+        component: () => import('@/views/application/detail'),
+        name: 'DetailApplicaiton',
+        meta: { title: '查看Application', icon: 'detail' }
       },
       {
         path: 'applog',
@@ -81,7 +102,22 @@ export const constantRoutes = [
         meta: { title: '部署日志', icon: 'tree' }
       }
     ]
-  }
+  },
+  {
+    path: '/k8s',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'K8s集群',
+        component: () => import('@/views/user/index'),
+        meta: {
+          title: 'K8s集群',
+          icon: 'form'
+        }
+      }
+    ]
+  },
 ]
 
 // 异步挂载的路由
@@ -132,6 +168,39 @@ export const asyncRoutes = [
         component: () => import('@/views/form/list'),
         name: 'ArticleList',
         meta: { title: '文章列表', icon: 'list', roles: ['admin'] }
+      }
+    ]
+  },
+  {
+    path: '/project',
+    component: Layout,
+    redirect: '/project/list',
+    name: '项目管理',
+    meta: {
+      title: '项目管理',
+      icon: 'form',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'list',
+        name: 'Project',
+        component: () => import('@/views/project/list'),
+        meta: { title: '项目列表', icon: 'table' }
+      },
+      {
+        path: 'create',
+        hidden: true,
+        component: () => import('@/views/project/create'),
+        name: 'CreateProject',
+        meta: { title: '新建Project', icon: 'create' }
+      },
+      {
+        path: 'update/:id',
+        hidden: true,
+        component: () => import('@/views/project/update'),
+        name: 'EditProject',
+        meta: { title: '编辑Project', icon: 'edit' }
       }
     ]
   },

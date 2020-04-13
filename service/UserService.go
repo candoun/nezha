@@ -28,6 +28,14 @@ func (a *UserService) GetUserAvatar(username string) *string {
 	return a.Repository.GetUserAvatar(&sel, &where)
 }
 
+//GetUserAvatar 获取用户头像
+func (a *UserService) GetUserID(username string) uint {
+	userWhere := models.User{Username: username}
+	userSel := "id"
+	userID := a.Repository.GetUserID(&userSel, &userWhere)
+	return userID
+}
+
 //GetRoles 获取用户角色
 func (a *UserService) GetRoles(username string) *[]string {
 	userWhere := models.User{Username: username}

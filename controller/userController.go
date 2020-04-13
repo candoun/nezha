@@ -31,10 +31,10 @@ type User struct {
 func (a *User) GetUserInfo(c *gin.Context) {
 	roles := jwt.ExtractClaims(c)
 	userName := roles["userName"].(string)
-	avatar := a.Service.GetUserAvatar(userName)
+	UserId := a.Service.GetUserID(userName)
 	code := codes.SUCCESS
 	userRoles := a.Service.GetRoles(userName)
-	data := page.User{Roles: userRoles, Introduction: "", Avatar: *avatar, Name: userName}
+	data := page.User{Roles: userRoles, Introduction: "", UserId: UserId, UserName: userName}
 	RespData(c, http.StatusOK, code, &data)
 }
 
@@ -67,9 +67,10 @@ func (a *User) RegisterUser(c *gin.Context) {
 		valid.Required(user.Password, "password").Message("密码不能为空")
 		if !valid.HasErrors() {
 			user.CreatedBy = user.Username
+			// 1- noral; 2 - forbidden
 			user.State = 1
-			// 0 - dev; 1 - admin
-			user.UserType = 0
+			// 1 - admin; 2 - dev
+			user.UserType = 2
 			user.Avatar = "https://zbj-bucket1.oss-cn-shenzhen.aliyuncs.com/avatar.JPG"
 			if !a.Service.ExistUserByName(user.Username) {
 				if a.Service.AddUser(&user) {
