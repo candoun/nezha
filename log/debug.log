@@ -169,3 +169,5 @@
 {"level":"error","ts":"2020-04-12T19:23:19.460+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-12T19:23:23.555+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
 {"level":"error","ts":"2020-04-12T19:23:42.547+0800","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *errors.errorString=record not found)"}
+{"level":"error","ts":"2020-04-14T06:55:19.872Z","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *mysql.MySQLError=Error 1146: Table 'gin-vue-nezha.nezha_user' doesn't exist)"}
+{"level":"error","ts":"2020-04-14T06:55:28.186Z","caller":"repository/UserRepository.go:21","msg":"用户名错误%!(EXTRA *mysql.MySQLError=Error 1146: Table 'gin-vue-nezha.nezha_user' doesn't exist)"}

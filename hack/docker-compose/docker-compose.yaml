@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  nezha-mysql:
+    image: mariadb:10.3
+    environment:
+      MYSQL_ROOT_PASSWORD: "gin-vue-nezha@123"
+    networks:
+    - default
+    expose:
+    - "3306"
+
+  nezha-backend:
+    image: nezha-backend:latest
+    command: /apps/nezha/bin/nezha -migrate=true
+    depends_on:
+    - nezha-mysql
+    restart: always
+    networks:
+    - default
+    links:
+    - nezha-mysql
+    expose:
+    - "8000"
+    ports:
+    - "8005:8000"
+
+  nezha-frontend:
+    image: nezha-frontend:latest
+    depends_on:
+    - nezha-backend
+    restart: always
+    networks:
+    - default
+    ports:
+    - "801:80"

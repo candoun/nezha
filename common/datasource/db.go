@@ -3,6 +3,7 @@ package datasource
 import (
 	"fmt"
 	"log"
+	"database/sql"
 
 	"github.com/aguncn/nezha/common/setting"
 	"github.com/aguncn/nezha/models"
@@ -21,6 +22,14 @@ type Db struct {
 	Conn *gorm.DB
 }
 
+
+func addLocation(dbURL string) string {
+        // https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql
+        return fmt.Sprintf("%s?charset=utf8mb4&loc=%s", dbURL, "Asia%2FShanghai")
+}
+
+
+
 //Connect 初始化数据库配置
 func (d *Db) Connect() error {
 	var (
@@ -33,6 +42,15 @@ func (d *Db) Connect() error {
 	user = conf.User
 	pwd = conf.Password
 	host = conf.Host
+
+	DBTns := fmt.Sprintf("tcp(%s)", host)
+    dbURL := fmt.Sprintf("%s:%s@%s/", user, pwd, DBTns)
+	dbForCreateDatabase, err := sql.Open(dbType, addLocation(dbURL))
+	fmt.Print("111connecting create db: xxxxxxxxxxxxxxxxxxxxxx",err)
+	fmt.Print("\n")
+	_, err = dbForCreateDatabase.Exec(fmt.Sprintf("CREATE DATABASE `%s` CHARACTER SET utf8 COLLATE utf8_general_ci;", dbName))
+	fmt.Print("connecting create db: xxxxxxxxxxxxxxxxxxxxxx",err)
+	fmt.Print("\n")
 
 	db, err := gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, pwd, host, dbName))
 	if err != nil {

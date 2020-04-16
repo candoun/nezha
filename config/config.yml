@@ -12,9 +12,10 @@ app:
 
 database:
   type: mysql
-  user: gin-vue-nezha
+  user: root
   password: gin-vue-nezha@123
-  host: 127.0.0.1:3306
+  host: nezha-mysql:3306 
+  # host: 127.0.0.1:3306
   name: gin-vue-nezha
   table-prefix: nezha_
 
